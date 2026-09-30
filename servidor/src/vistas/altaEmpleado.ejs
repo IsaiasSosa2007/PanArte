@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="idEmp">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="contenedor"><h1>Alta empleado</h1>
+        <nav>
+            <a href="/"><button>Home</button></a>
+            <a href=""><button>Clientes</button></a>
+            <a href="/empleados"><button>Empleados</button></a>
+            <a href=""><button>Ventas</button></a>
+            <a href=""><button>Pedidos</button></a>
+            <a href=""><button>Productos</button></a>
+            <a href=""><button>Ingrediente</button></a>
+            <a href=""><button>Proveedores</button></a>
+        </nav>
+        <nav>
+            <a href="/empleados/alta"><button>Alta empleado</button></a>
+            <a href="/empleados/baja"><button>Baja empleado</button></a>
+            <a href="/empleados/mod"><button>Modificar empleado</button></a>
+            <a href="/empleados/cons"><button>Consultar empleado</button></a>
+        </nav>
+        <form action="" method="post">
+            <label for="idEmpId">Id</label>
+            <input type="text" name="empId" id="idEmpId">
+
+            <label for="idEmpNom">Nombre</label>
+            <input type="text" name="empNom" id="idEmpNom">
+
+            <label for="idEmpApe">Apellido</label>
+            <input type="text" name="empApe" id="idEmpApe">
+
+            <label for="idEmpPuesto">Puesto</label>
+            <input type="text" name="empPuesto" id="idEmpPuesto">
+
+            <label for="idEmpTel">Telefono</label>
+            <input type="text" name="empTel" id="idEmpTel">
+
+            <label for="idEmpFecha">Fecha de contratacion</label>
+            <input type="date" name="empFecha" id="idEmpFecha">
+            <!-- <input placeholder="Dia" type="number" min="1" max="31" name="empFechaDia" id="idEmpFecha"> -->
+            <!-- <input placeholder="Mes" type="number" min="1" max="12" name="empFechaMes">
+            <input placeholder="Anio" type="number" min="1990" max="2026" name="empFechaAnio"> -->
+
+            <input type="submit" value="enviar">
+        </form>
+    </div>
+</body>
+</html>
