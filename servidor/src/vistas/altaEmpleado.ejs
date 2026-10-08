@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" id="idEmp">
-    <link rel="stylesheet" href="main.css">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
+    <title>Alta Empleados</title>
 </head>
 <body>
     <div class="contenedor"><h1>Alta empleado</h1>
@@ -25,29 +25,48 @@
             <a href="/empleados/cons"><button>Consultar empleado</button></a>
         </nav>
         <form action="" method="post">
-            <label for="idEmpId">Id</label>
-            <input type="text" name="empId" id="idEmpId">
+            <label for="idEmpId">Id
+                <input type="text" name="empId" id="idEmpId">
+            </label>
+            
 
-            <label for="idEmpNom">Nombre</label>
-            <input type="text" name="empNom" id="idEmpNom">
+            <label for="idEmpNom">Nombre
+                <input type="text" name="empNom" id="idEmpNom">
+            </label>
+            
 
-            <label for="idEmpApe">Apellido</label>
-            <input type="text" name="empApe" id="idEmpApe">
+            <label for="idEmpApe">Apellido
+                <input type="text" name="empApe" id="idEmpApe">
+            </label>
+            
 
-            <label for="idEmpPuesto">Puesto</label>
-            <input type="text" name="empPuesto" id="idEmpPuesto">
+            <label for="idEmpPuesto">Puesto
+                <input type="text" name="empPuesto" id="idEmpPuesto" list="puestos">
+            </label>
+            <!-- Qué pasa si ingresa cualquier cosa? deberia tirar un error? se puede hacer 
+            <select name="" id="">
+                <option value=""></option>
+            </select>
+            pero con las otras opciones qué? Deberia tirar un error si ingresa algun dato no valido.
+            (letras el tel, numeros en nombre, etc)
+            Cómo coño se hace es la pregunta -->
 
-            <label for="idEmpTel">Telefono</label>
-            <input type="text" name="empTel" id="idEmpTel">
+            <label for="idEmpTel">Telefono
+                <input type="text" name="empTel" id="idEmpTel">
+            </label>
+            
 
-            <label for="idEmpFecha">Fecha de contratacion</label>
-            <input type="date" name="empFecha" id="idEmpFecha">
-            <!-- <input placeholder="Dia" type="number" min="1" max="31" name="empFechaDia" id="idEmpFecha"> -->
-            <!-- <input placeholder="Mes" type="number" min="1" max="12" name="empFechaMes">
-            <input placeholder="Anio" type="number" min="1990" max="2026" name="empFechaAnio"> -->
-
+            <label for="idEmpFecha">Fecha de contratacion
+                <input type="date" name="empFecha" id="idEmpFecha">
+            </label>
+            
             <input type="submit" value="enviar">
         </form>
+        <datalist id="puestos">
+            <option value="Cajero">Cajero</option>
+            <option value="Panadero">Panadero</option>
+            <option value="Limpieza">Limpieza</option>
+        </datalist>
     </div>
 </body>
 </html>

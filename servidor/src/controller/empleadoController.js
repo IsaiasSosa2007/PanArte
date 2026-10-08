@@ -11,7 +11,7 @@ export const empNuevo=async(pet, resp)=>{
     id=pet.body.empId;
     nom=pet.body.empNom;
     ape=pet.body.empApe
-    tel=pet.bofy.empTel;
+    tel=pet.body.empTel;
     puesto=pet.body.empPuesto;
     fecha=pet.body.empFecha;
 
