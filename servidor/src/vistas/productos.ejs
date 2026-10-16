@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/csub.css">
+    <title>Producto</title>
 </head>
 <body>
     <div class="contenedor">
-        <nav>
-            <a href="/productos/alta"><button>Ingresar productos</button></a>
-            <a href=""><button>Eliminar productos</button></a>
-            <a href=""><button>Buscar productos</button></a>
-            <a href=""><button>Modificar productos</button></a>
+        <header>
+            <div class="divImg">
+                <img src="/LogoPanArte.png" alt="">
+            </div>
+            <nav>
+                <div>
+                    <a href="/"><button>Home</button></a>
+                    <a href="/clientes"><button>Clientes</button></a>
+                    <a href="/empleados"><button>Empleados</button></a>
+                    <a href="/proveedores"><button>Proveedores</button></a>
+                </div>
+                <div>
+                    <a href="/ventas"><button>Ventas</button></a>
+                    <a href="/pedidos"><button>Pedidos</button></a>
+                    <a href="/productos"><button>Productos</button></a>
+                    <a href="/ingredientes"><button>Ingrediente</button></a>
+                </div>
+            </nav>
+        </header>
+        <div class="divSubt">
+            <h2>Productos</h2>
+        </div>
+        <nav class="navSub">
+            <a href="/productos/alta"><button>Alta</button></a>
+            <a href="/productos/baja"><button>Baja</button></a>
+            <a href="/productos/mod"><button>Modificar</button></a>
+            <a href="/productos/cons"><button>Consultar</button></a>
+            <a href="/productos/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
     </div>
 </body>

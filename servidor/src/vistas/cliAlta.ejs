@@ -1,11 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/csub.css">
     <title>Alta Cliente</title>
 </head>
-<body>
-    <h1>Alta Cliente</h1>
+<body> 
+    <!-- <h1>Alta Cliente</h1> -->
+    <div class="contenedor">
+        <header>
+            <div class="divImg">
+                <img src="/LogoPanArte.png" alt="">
+            </div>
+            <nav>
+                <div>
+                    <a href="/"><button>Home</button></a>
+                    <a href="/clientes"><button>Clientes</button></a>
+                    <a href="/empleados"><button>Empleados</button></a>
+                    <a href="/proveedores"><button>Proveedores</button></a>
+                </div>
+                <div>
+                    <a href="/ventas"><button>Ventas</button></a>
+                    <a href="/pedidos"><button>Pedidos</button></a>
+                    <a href="/productos"><button>Productos</button></a>
+                    <a href="/ingredientes"><button>Ingrediente</button></a>
+                </div>
+            </nav>
+        </header>
+        <div class="divSubt">
+            <h2>Altas Clientes</h2>
+        </div>
+        <nav class="navSub">
+            <a href="/clientes/alta"><button>Alta</button></a>
+            <a href="/clientes/baja"><button>Baja</button></a>
+            <a href="/clientes/mod"><button>Modificar</button></a>
+            <a href="/clientes/cons"><button>Consultar</button></a>
+        </nav>
+
+        <form action="/clientes/cliNuevo" method="post">
+            <label for="idCliDno"> DNI
+                <input type="text" name="cliDni" id="idCliDni">
+            </label>
+            <label for="idCliNom">Nombre
+                <input type="text" name="cliNom" id="idCliNom">
+            </label>
+            <label for="idCliApe">apellido
+                <input type="text" name="cliApe" id="idCliApe">
+            </label>
+            <label for="idCliTel">Telefono
+                <input type="text" name="cliTel" id="idCliTel">
+            </label>
+            <label for="idCliEmail">Email
+                <input type="text" name="cliEmail" id="idCliEmail">
+            </label>
+            <input type="submit" value="enviar">
+        </form>
+    </div>
 </body>
 </html>

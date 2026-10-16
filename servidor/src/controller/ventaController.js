@@ -1,12 +1,55 @@
-// import {conectar}from '../database/conexion.js';
-// const bdd=await conectar();
-export const ventAlta=(pet, resp)=>{
-    resp.render('ventAlta');
+import {conectar}from '../database/conexion.js';
+const bdd=await conectar();
+async function obtenerProductos() {
+    try{
+    let productos_ID_SQL="select id, nombre, precio from productos order by id";
+    const [productos]=await bdd.query(productos_ID_SQL);
+    return {productos};
+    }
+    catch(error){console.log(error);
+        return
+    }
+} 
+// obtenerProductos=async()=>{
+//     try{
+//     let productos_ID_SQL="select id, nombre, precio from productos order by id";
+//     const [productos]=await bdd.query(productos_ID_SQL);
+//     return {productos};
+//     }
+//     catch(error){console.log(error);
+//         return
+//     }
+// }
+export const ventAlta=async(pet, resp)=>{
+    // let productos_ID_SQL="select id, nombre, precio from panartev1.productos order by id";
+    // const [productos]=await bdd.query(productos_ID_SQL);
+    try{
+    let productos=obtenerProductos();
+    console.log(productos);
+    resp.render('ventAlta', {productos});}
+    catch(error){console.log(error);
+    }
+    
+    
 }
 export const ventNuevo=async(pet, resp)=>{
-    //1: tomar contenido de los name
-    //2: colocar esos name en el insert
-    //3: ejecutar ese insert
+    let fecha, hora, total, cantProd, precioUniAct, prodId, empId;
+    fecha=pet.body.ventFehca;
+    hora=pet.body.ventHora;
+    total=pet.body.ventTotal;
+    cantProd=pet.body.ventCantProd;
+    precioUniAct=pet.body.ventPrecioUniAct;
+    prodId=pet.body.ventProdId;
+    empId=pet.body.ventEmpId;
+
+    try {
+        let altasSQL= "INSERT INTO ventas(`fecha`,`hora`,`total`,`cantidad_productos`,`precio_unit_actual`,`productos_id`,`empleados_id`)VALUES('"+fecha+"','"+hora+"','"+total+"','"+cantProd+"','"+precioUniAct+"','"+prodId+"','"+empId+"');";
+        const [registro]=await bdd.query(altasSQL);
+        resp.render('index');
+        console.log(registro);
+    } catch (error) {
+        console.log(`error al crear la sentencia insert ${error}`);
+    }
 }
 export const ventMenu=(pet, resp)=>{
     resp.render('ventas');

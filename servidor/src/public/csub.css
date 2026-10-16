@@ -1,0 +1,31 @@
+.divSubt{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    /* border: solid 3px red; */
+    border-radius: 10px;
+    background-color: #f8d7b2;
+}
+.divSubt>h2{
+    color: #3D3028;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.navSub{
+    /* border: solid 3px red; */
+    background-color: #f8d7b2;
+    border-radius: 10px;
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.navSub>a{
+    width: 12%;
+    height: 70%;
+}
+.navSub>a>button{
+    color: #f9f3ec;
+    font-size: 1.6em;
+}

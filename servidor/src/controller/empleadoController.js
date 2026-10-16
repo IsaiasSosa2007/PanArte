@@ -1,7 +1,7 @@
-// import {conectar}from '../database/conexion.js';
-// const bdd=await conectar();
+import {conectar}from '../database/conexion.js';
+const bdd=await conectar();
 export const empAlta=(pet, resp)=>{
-    resp.render('altaEmpleado');
+    resp.render('empAlta');
 }
 export const empNuevo=async(pet, resp)=>{
     //1: tomar contenido de los name
@@ -16,7 +16,7 @@ export const empNuevo=async(pet, resp)=>{
     fecha=pet.body.empFecha;
 
     try {
-        let altasSQL= "INSERT INTO empleados (`id`,`nombre`,`apellido`,`puesto`,`fecha_contratacion`,`telefono`) VALUES ('"+id+"','"+nom+"','"+ape+"','"+puesto+"','"+fecha+"','"+telefono+"');";
+        let altasSQL= "INSERT INTO empleados (`id`,`nombre`,`apellido`,`puesto`,`fecha_contratacion`,`telefono`) VALUES ('"+id+"','"+nom+"','"+ape+"','"+puesto+"','"+fecha+"','"+tel+"');";
         const [registro]=await bdd.query(altasSQL);
         resp.render('index');
         console.log(registro);
@@ -28,11 +28,11 @@ export const empMenu=(pet, resp)=>{
     resp.render('empleados');
 }
 export const empBaja=(pet, resp)=>{
-    resp.render('bajaEmpleado');
+    resp.render('empBaja');
 }
 export const empMod=(pet, resp)=>{
-    resp.render('modEmpleado');
+    resp.render('empMod');
 }
 export const empCons=(pet, resp)=>{
-    resp.render('consEmpleado');
+    resp.render('empCons');
 }

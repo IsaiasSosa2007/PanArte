@@ -1,12 +1,25 @@
-// import {conectar}from '../database/conexion.js';
-// const bdd=await conectar();
+import {conectar}from '../database/conexion.js';
+const bdd=await conectar();
 export const cliAlta=(pet, resp)=>{
     resp.render('cliAlta');
 }
 export const cliNuevo=async(pet, resp)=>{
-    //1: tomar contenido de los name
-    //2: colocar esos name en el insert
-    //3: ejecutar ese insert
+    let dni, nom, ape, tel, email;
+    dni=pet.body.cliDni;
+    nom=pet.body.cliNom;
+    ape=pet.body.cliApe
+    nom=nom+" "+ape;
+    tel=pet.body.cliTel;
+    email=pet.body.cliEmail;
+    esFrecuente=1;//1=si 0=no
+    try {
+        let altasSQL= "INSERT INTO clientes_frecuentes (`dni`,`nombre`,`telefono`,`email`,`es_frecuente`) VALUES('"+dni+"','"+nom+"','"+tel+"','"+email+"','"+esFrecuente+"');";
+        const [registro]=await bdd.query(altasSQL);
+        resp.render('index');
+        console.log(registro);
+    } catch (error) {
+        console.log(`error al crear la sentencia insert ${error}`);
+    }
 }
 export const cliMenu=(pet, resp)=>{
     resp.render('clientes');

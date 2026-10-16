@@ -1,28 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/csub.css">
     <title>Empleados</title>
 </head>
 <body>
     <div class="contenedor">
-        <nav>
-            <a href="/"><button>Home</button></a>
-            <a href=""><button>Clientes</button></a>
-            <a href="/empleados"><button>Empleados</button></a>
-            <a href=""><button>Ventas</button></a>
-            <a href=""><button>Pedidos</button></a>
-            <a href=""><button>Productos</button></a>
-            <a href=""><button>Ingrediente</button></a>
-            <a href=""><button>Proveedores</button></a>
-        </nav>
-        <nav>
-            <a href="/empleados/alta"><button>Alta empleado</button></a>
-            <a href="/empleados/baja"><button>Baja empleado</button></a>
-            <a href="/empleados/mod"><button>Modificar empleado</button></a>
-            <a href="/empleados/cons"><button>Consultar empleado</button></a>
+        <header>
+            <div class="divImg">
+                <img src="/LogoPanArte.png" alt="">
+            </div>
+            <nav>
+                <div>
+                    <a href="/"><button>Home</button></a>
+                    <a href="/clientes"><button>Clientes</button></a>
+                    <a href="/empleados"><button>Empleados</button></a>
+                    <a href="/proveedores"><button>Proveedores</button></a>
+                </div>
+                <div>
+                    <a href="/ventas"><button>Ventas</button></a>
+                    <a href="/pedidos"><button>Pedidos</button></a>
+                    <a href="/productos"><button>Productos</button></a>
+                    <a href="/ingredientes"><button>Ingrediente</button></a>
+                </div>
+            </nav>
+        </header>
+        <div class="divSubt">
+            <h2>Empleados</h2>
+        </div>
+        <nav class="navSub">
+            <a href="/empleados/alta"><button>Alta</button></a>
+            <a href="/empleados/baja"><button>Baja</button></a>
+            <a href="/empleados/mod"><button>Modificar</button></a>
+            <a href="/empleados/cons"><button>Consultar</button></a>
+            <a href="/empleados/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
     </div>
 </body>
