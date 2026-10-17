@@ -37,11 +37,10 @@
             <a href="/clientes/baja"><button>Baja</button></a>
             <a href="/clientes/mod"><button>Modificar</button></a>
             <a href="/clientes/cons"><button>Consultar</button></a>
-            <a href=""><button>Mostrar Todo</button></a>
+            <a href="/clientes/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
-
         <form action="/clientes/cliNuevo" method="post">
-            <label for="idCliDno"> DNI
+            <label for="idCliDni"> DNI
                 <input type="text" name="cliDni" id="idCliDni">
             </label>
             <label for="idCliNom">Nombre
@@ -55,6 +54,9 @@
             </label>
             <label for="idCliEmail">Email
                 <input type="text" name="cliEmail" id="idCliEmail">
+            </label>
+            <label for="idCliDesc">Descuento
+                <input type="number" name="cliDesc" id="idCliDesc">%
             </label>
             <input type="submit" value="enviar">
         </form>

@@ -38,6 +38,23 @@
             <a href="/productos/cons"><button>Consultar</button></a>
             <a href="/productos/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+        <form action="/productos/prodAlta" method="post">
+            <label for="idProdNom">Nombre
+                <input type="text" name="prodNom" id="idProdNom">
+            </label>
+            <label for="idProdDesc">Descripcion
+                <input type="text" name="prodDesc" id="idProdDesc">
+            </label>
+            <label for="idProdPrec">Precio
+                <input type="number" name="prodPrec" id="idProdPrec">
+            </label>
+            <label for="idProdStock">Productos en stock
+                <input type="number" name="prodStock" id="idProdStock">
+            </label>
+            <label for="idProdCat">Categoria
+                <input type="text" name="prodCat" id="idProdCat">
+            </label>
+        </form>
     </div>
 </body>
 </html>

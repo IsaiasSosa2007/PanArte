@@ -38,6 +38,23 @@
             <a href="/ingredientes/cons"><button>Consultar</button></a>
             <a href="/ingredientes/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+        <form action="/ingredientes/ingNuevo" method="post">
+            <label for="idIngNom">Nombre
+                <input type="text" name="ingNom" id="idIngNom">
+            </label>
+            <label for="idIngCant">Cantidad Stock
+                <input type="number" name="ingCant" id="idIngCant">
+            </label>
+            <label for="idIngUniMed">Unidad de medida
+                <input type="text" name="ingUniMed" id="idIngUniMed">
+            </label>
+            <label for="idIngProv">Proveedor
+                <input type="text" name="ingProv" id="idIngProv">
+            </label>
+            <!-- Debería tambien ingresar el proveedor?
+            Deberia simplemente ingresar la cantidad de producto a reponer, 
+            actualizando la cantidad del producto ya existente en la bdd -->
+        </form>
     </div>
 </body>
 </html>

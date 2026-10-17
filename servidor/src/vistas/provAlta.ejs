@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="provviewpoidProvrt" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/csub.css">
     <title>Alta Proveedor</title>
@@ -38,6 +38,17 @@
             <a href="/proveedores/cons"><button>Consultar</button></a>
             <a href="/proveedores/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+        <form action="/proveedores/provNuevo">
+            <label for="idProvNom">Nombre de la empresa
+                <input type="text" name="provNom" id="idProvNom">
+            </label>
+            <label for="idProvTel">Telefono
+                <input type="text" name="provTel" id="idProvTel">
+            </label>
+            <label for="idProvDir">Direccion
+                <input type="text" name="provDir" id="idProvDir">
+            </label>
+        </form>
     </div>
 </body>
 </html>

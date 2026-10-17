@@ -32,17 +32,16 @@ export const ventAlta=(pet, resp)=>{
 }
 export const ventNuevo=async(pet, resp)=>{
     let fecha, hora, total, cantProd, precioUniAct, subTotal, desc, cliDni, prodId, empId;
-    // fecha=pet.body.ventFehca;
-    // hora=pet.body.ventHora;
-    // total=pet.body.ventTotal;
+    let date=new Date();
     cantProd=pet.body.ventCantProd;
-    // precioUniAct=pet.body.ventPrecioUniAct;
-    // subTotal
-    // desc
-    // cliDni
     prodId=pet.body.ventProdId;
     empId=pet.body.ventEmpId;
-
+    cliDni=pet.body.ventCliDni;
+    //precioUniAct=precio que del producto, que lo traemos con su id
+    fecha=`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    hora=`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    subTotal=precioUniAct*cantProd;
+    total=subTotal-(subTotal*(desc/100));
     try {
         let altasSQL= "INSERT INTO `ventas`(`fecha`,`hora`,`total`,`cantidad_productos`,`precio_unit_actual`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`,`productos_id`)VALUES('"+fecha+"','"+hora+"','"+total+"','"+subTotal+"','"+cantProd+"','"+precioUniAct+"','"+subTotal+"','"+desc+"','"+cliDni+"','"+prodId+"', '"+empId+"');";
         const [registro]=await bdd.query(altasSQL);
@@ -63,4 +62,15 @@ export const ventMod=(pet, resp)=>{
 }
 export const ventCons=(pet, resp)=>{
     resp.render('ventCons');
+}
+export const ventMT=/*async*/(pet, resp)=>{
+    resp.render('ventMT');
+    // try{
+    //     let mostrarSQL="SELECT id_cliente,nombre,direccion,telefono,ciudad FROM mydb.cliente Order by id_cliente;";
+    //     const [registros]=await bdd.query(mostrarSQL);
+    //     console.log(registros);
+    //     resp.render('mostrarTodoCliente', {registros});
+    // }catch(error){
+    //     console.log('no puede mostrar los datos');
+    // }
 }

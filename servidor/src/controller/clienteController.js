@@ -34,3 +34,6 @@ export const cliMod=(pet, resp)=>{
 export const cliCons=(pet, resp)=>{
     resp.render('cliCons');
 }
+export const cliMT=(pet, resp)=>{
+    resp.render('cliMT');
+}

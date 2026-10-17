@@ -38,6 +38,26 @@
             <a href="/pedidos/cons"><button>Consultar</button></a>
             <a href="/pedidos/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+        <form action="/pedidos/pedNuevo" method="post">
+            <label for="idPedCantProd">Cantidad de productos
+                <input type="number" name="pedCantProd" id="idPedCantProd">
+            </label>
+            <label for="idPedFecha">Fecha de entrega
+                <input type="text" name="pedFecha" id="idPedFecha">
+            </label>
+            <label for="idPedHora">Hora de entrega
+                <input type="text" name="pedHora" id="idPedHora">
+            </label>
+            <label for="idPedCliDni">Cliente frecuente DNI
+                <input type="number" name="pedCliDni" id="idPedCliDni">
+            </label>
+            <label for="idPedProd">Producto ID
+                <input type="number" name="pedProd" id="idPedProd">
+            </label>
+            <label for="idPedEmp">Empleado ID
+                <input type="number" name="pedEmp" id="idPedEmp">
+            </label>
+        </form>
     </div>
 </body>
 </html>

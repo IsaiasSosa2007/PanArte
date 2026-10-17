@@ -36,24 +36,15 @@
             <a href="/empleados/baja"><button>Baja</button></a>
             <a href="/empleados/mod"><button>Modificar</button></a>
             <a href="/empleados/cons"><button>Consultar</button></a>
-            <a href=""><button>Mostrar Todo</button></a>
+            <a href="/empleados/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
         <form action="/empleados/empNuevo" method="post">
-            <label for="idEmpId">Id
-                <input type="text" name="empId" id="idEmpId">
-            </label>
-            
-
             <label for="idEmpNom">Nombre
                 <input type="text" name="empNom" id="idEmpNom">
             </label>
-            
-
             <label for="idEmpApe">Apellido
                 <input type="text" name="empApe" id="idEmpApe">
             </label>
-            
-
             <label for="idEmpPuesto">Puesto
                 <input type="text" name="empPuesto" id="idEmpPuesto" list="puestos">
             </label>
@@ -64,16 +55,12 @@
             pero con las otras opciones qué? Deberia tirar un error si ingresa algun dato no valido.
             (letras el tel, numeros en nombre, etc)
             Cómo coño se hace es la pregunta -->
-
             <label for="idEmpTel">Telefono
                 <input type="text" name="empTel" id="idEmpTel">
             </label>
-            
-
             <label for="idEmpFecha">Fecha de contratacion
                 <input type="date" name="empFecha" id="idEmpFecha">
             </label>
-            
             <input type="submit" value="enviar">
         </form>
         <datalist id="puestos">

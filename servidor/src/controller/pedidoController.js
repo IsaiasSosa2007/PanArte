@@ -39,3 +39,14 @@ export const pedMod=(pet, resp)=>{
 export const pedCons=(pet, resp)=>{
     resp.render('pedCons');
 }
+export const pedMT=/*async*/(pet, resp)=>{
+    resp.render('pedMT');
+    // try{
+    //     let mostrarSQL="SELECT id_cliente,nombre,direccion,telefono,ciudad FROM mydb.cliente Order by id_cliente;";
+    //     const [registros]=await bdd.query(mostrarSQL);
+    //     console.log(registros);
+    //     resp.render('mostrarTodoCliente', {registros});
+    // }catch(error){
+    //     console.log('no puede mostrar los datos');
+    // }
+}

@@ -31,3 +31,14 @@ export const prodMod=(pet, resp)=>{
 export const prodCons=(pet, resp)=>{
     resp.render('prodCons');
 }
+export const prodMT=/*async*/(pet, resp)=>{
+    resp.render('prodMT');
+    // try{
+    //     let mostrarSQL="SELECT id_cliente,nombre,direccion,telefono,ciudad FROM mydb.cliente Order by id_cliente;";
+    //     const [registros]=await bdd.query(mostrarSQL);
+    //     console.log(registros);
+    //     resp.render('mostrarTodoCliente', {registros});
+    // }catch(error){
+    //     console.log('no puede mostrar los datos');
+    // }
+}
