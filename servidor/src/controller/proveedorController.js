@@ -7,6 +7,19 @@ export const provNuevo=async(pet, resp)=>{
     //1: tomar contenido de los name
     //2: colocar esos name en el insert
     //3: ejecutar ese insert
+    let nom, tel, direccion;
+    nom=pet.body.empNom;
+    tel=pet.body.empTel;
+    dir=pet.body.empDir;
+
+    try {
+        let altasSQL= "INSERT INTO `proveedores`(`nombre_empresa`,`telefono`,`direccion`)VALUES('"+nom+"','"+tel+"','"+dir+"');";
+        const [registro]=await bdd.query(altasSQL);
+        resp.render('index');
+        console.log(registro);
+    } catch (error) {
+        console.log(`error al crear la sentencia insert ${error}`);
+    }
 }
 export const provMenu=(pet, resp)=>{
     resp.render('proveedores');

@@ -4,9 +4,28 @@ export const pedAlta=(pet, resp)=>{
     resp.render('pedAlta');
 }
 export const pedNuevo=async(pet, resp)=>{
-    //1: tomar contenido de los name
-    //2: colocar esos name en el insert
-    //3: ejecutar ese insert
+    let fecha, hora, total, fechaEnt, horaEnt, cantProd, precioUniAct, subTotal, desc, cliId, prodId, empId;
+    fecha=pet.body.pedFecha;
+    hora=pet.body.pedHora;
+    fechaEnt
+    horaEnt
+    estadoPed
+    total=pet.body.pedTotal;
+    cantProd=pet.body.pedCantProd;
+    precioUniAct=pet.body.pedPrecioUniAct;
+    subTotal
+    desc
+    cliId
+    prodId=pet.body.pedProdId;
+    empId=pet.body.pedEmpId;
+    try {
+        let altasSQL= "INSERT INTO `pedidos`(`fecha_pedido`,`hora_pedido`,`total`,`cantidad_productos`,`fecha_entrega`,`hora_entrega`,`estado_pedido`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`,`productos_id`)VALUE('"+fecha+"','"+hora+"','"+fechaEnt+"','"+horaEnt+"','"+estadoPed+"','"+total+"','"+cantProd+"','"+precioUniAct+"','"+subTotal+"','"+desc+"','"+cliId+"','"+prodId+"','"+empId+"');";
+        const [registro]=await bdd.query(altasSQL);
+        resp.render('index');
+        console.log(registro);
+    } catch (error) {
+        console.log(`error al crear la sentencia insert ${error}`);
+    }
 }
 export const pedMenu=(pet, resp)=>{
     resp.render('pedidos');

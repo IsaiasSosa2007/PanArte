@@ -4,16 +4,17 @@ export const cliAlta=(pet, resp)=>{
     resp.render('cliAlta');
 }
 export const cliNuevo=async(pet, resp)=>{
-    let dni, nom, ape, tel, email;
+    let dni, nom, ape, tel, email, desc;
     dni=pet.body.cliDni;
     nom=pet.body.cliNom;
     ape=pet.body.cliApe
     nom=nom+" "+ape;
     tel=pet.body.cliTel;
     email=pet.body.cliEmail;
+    desc
     esFrecuente=1;//1=si 0=no
     try {
-        let altasSQL= "INSERT INTO clientes_frecuentes (`dni`,`nombre`,`telefono`,`email`,`es_frecuente`) VALUES('"+dni+"','"+nom+"','"+tel+"','"+email+"','"+esFrecuente+"');";
+        let altasSQL= "INSERT INTO `clientes_frecuentes`(`dni`,`nombre`,`apellido`,`telefono`,`email`,`descuento`)VALUES('"+dni+"','"+nom+"','"+ape+"','"+tel+"','"+email+"','"+desc+"');";
         const [registro]=await bdd.query(altasSQL);
         resp.render('index');
         console.log(registro);

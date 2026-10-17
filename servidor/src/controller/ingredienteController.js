@@ -4,9 +4,19 @@ export const ingAlta=(pet, resp)=>{
     resp.render('ingAlta');
 }
 export const ingNuevo=async(pet, resp)=>{
-    //1: tomar contenido de los name
-    //2: colocar esos name en el insert
-    //3: ejecutar ese insert
+    let nom, cantStock, unidadMedida, ingStock, categ
+    nom=pet.body.ingNom;
+    cantStock=pet.body.ingCantStock;
+    unidadMedida=pet.body.ingUnidadMedida;
+    idProv=pet.body.ingIdProv;
+    try {
+        let altasSQL= "INSERT INTO `ingredientes`(`nombre`,`cantidad_stock`,`unidad_medida`,`proveedores_id/nit`)VALUES('"+nom+"','"+cantStock+"','"+unidadMedida+"','"+idProv+"');";
+        const [registro]=await bdd.query(altasSQL);
+        resp.render('index');
+        console.log(registro);
+    } catch (error) {
+        console.log(`error al crear la sentencia insert ${error}`);
+    }
 }
 export const ingMenu=(pet, resp)=>{
     resp.render('ingredientes');

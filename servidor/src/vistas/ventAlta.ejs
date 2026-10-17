@@ -39,20 +39,11 @@
             <a href="/ventas/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
         <form action="/ventas/ventNuevo" method="post">
-            <label for="idVentFecha">Fecha
-                <input type="text" name="ventFecha" id="idVentFecha">
-            </label>
-            <label for="idVentHora">Hora
-                <input type="text" name="ventHora" id="idVentHora">
-            </label>
-            <label for="idVentTotal">Total
-                <input type="text" name="ventTotal" id="idVentTotal">
-            </label>
             <label for="idVentCantProd">Cantidad del producto
                 <input type="text" name="ventCantProd" id="idVentCantProd">
             </label>
-            <label for="idVentPrecioUniAct">Precio unitario actual
-                <input type="text" name="ventPrecioUniAct" id="idVentPrecioUniAct">
+            <label for="idVentCliDni">Cliente frecuente DNI
+                <input type="text" name="ventCliDni" id="idVentCliDni">
             </label>
             <label for="idVentProdId">Producto id
                 <input type="text" name="ventProdId" id="idVentProdId" list="listProductos">
@@ -62,12 +53,6 @@
             </label>
             <input type="submit" value="enviar">
         </form>
-        <%
-        if(productos.length>0){%>
-            <datalist id="listProductos">
-                <option value="1"><%=productos.nombre[0]%></option>
-            </datalist>
-        <%}%>
     </div>
 </body>
 </html>

@@ -4,9 +4,20 @@ export const prodAlta=(pet, resp)=>{
     resp.render('prodAlta');
 }
 export const prodNuevo=async(pet, resp)=>{
-    //1: tomar contenido de los name
-    //2: colocar esos name en el insert
-    //3: ejecutar ese insert
+    let nom, desc, prec, prodStock, categ
+    nom=pet.body.prodNom;
+    desc=pet.body.prodDesc;
+    prec=pet.body.prodPrec;
+    prodStock=pet.body.prodStock;
+    categ=pet.body.prodCateg;
+    try {
+        let altasSQL= "INSERT INTO `productos`(`nombre`,`descripcion`,`precio`,`productos_stock`,`categoria`)VALUES('"+nom+"','"+desc+"','"+prec+"','"+prodStock+"','"+categ+"');";
+        const [registro]=await bdd.query(altasSQL);
+        resp.render('index');
+        console.log(registro);
+    } catch (error) {
+        console.log(`error al crear la sentencia insert ${error}`);
+    }
 }
 export const prodMenu=(pet, resp)=>{
     resp.render('productos');
