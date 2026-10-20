@@ -4,11 +4,11 @@ export const ingAlta=(pet, resp)=>{
     resp.render('ingAlta');
 }
 export const ingNuevo=async(pet, resp)=>{
-    let nom, cantStock, unidadMedida, ingStock, categ
+    let nom, cantStock, unidadMedida, idProv;
     nom=pet.body.ingNom;
-    cantStock=pet.body.ingCantStock;
-    unidadMedida=pet.body.ingUnidadMedida;
-    idProv=pet.body.ingIdProv;
+    cantStock=pet.body.ingCant;
+    unidadMedida=pet.body.ingUniMed;
+    idProv=pet.body.ingProv;
     try {
         let altasSQL= "INSERT INTO `ingredientes`(`nombre`,`cantidad_stock`,`unidad_medida`,`proveedores_id/nit`)VALUES('"+nom+"','"+cantStock+"','"+unidadMedida+"','"+idProv+"');";
         const [registro]=await bdd.query(altasSQL);

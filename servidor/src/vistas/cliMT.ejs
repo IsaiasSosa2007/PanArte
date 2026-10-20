@@ -54,7 +54,8 @@
             <tbody>
                 <%
                 if(registros.length>0){
-                    registros.forEach(cli => { %>
+                    registros.forEach(cli => { 
+                        console.log(typeof cli.descuento)%>
                         <tr>
                             <td><%=cli.id%></td>
                             <td><%=cli.dni%></td>

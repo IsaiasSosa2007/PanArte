@@ -4,9 +4,6 @@ export const empAlta=(pet, resp)=>{
     resp.render('empAlta');
 }
 export const empNuevo=async(pet, resp)=>{
-    //1: tomar contenido de los name
-    //2: colocar esos name en el insert
-    //3: ejecutar ese insert
     let nom, ape, tel, puesto, fecha;
     nom=pet.body.empNom;
     ape=pet.body.empApe
@@ -15,7 +12,7 @@ export const empNuevo=async(pet, resp)=>{
     fecha=pet.body.empFecha;
 
     try {
-        let altasSQL= "INSERT INTO `empleados`(`nombre`,`apellido`,`puesto`,`fecha_contratacion`,`telefono`)VALUES('"+nom+"','"+ape+"','"+tel+"','"+puesto+"','"+fecha+"');";
+        let altasSQL= "INSERT INTO `empleados`(`nombre`,`apellido`,`puesto`,`fecha_contratacion`,`telefono`)VALUES('"+nom+"','"+ape+"','"+puesto+"','"+fecha+"','"+tel+"');";
         const [registro]=await bdd.query(altasSQL);
         resp.render('index');
         console.log(registro);

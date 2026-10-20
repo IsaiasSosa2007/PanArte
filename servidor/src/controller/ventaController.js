@@ -38,8 +38,8 @@ export const ventNuevo=async(pet, resp)=>{
     empId=pet.body.ventEmpId;
     cliDni=pet.body.ventCliDni;
     //precioUniAct=precio que del producto, que lo traemos con su id
-    fecha=`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-    hora=`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    fecha=`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+    hora=`${date.getHours()}:${date.getMinutes()}:00`
     subTotal=precioUniAct*cantProd;
     total=subTotal-(subTotal*(desc/100));
     try {

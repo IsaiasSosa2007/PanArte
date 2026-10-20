@@ -43,13 +43,19 @@
                 <input type="number" name="pedCantProd" id="idPedCantProd">
             </label>
             <label for="idPedFecha">Fecha de entrega
-                <input type="text" name="pedFecha" id="idPedFecha">
+                <input type="date" name="pedFechaEnt" id="idPedFecha">
             </label>
             <label for="idPedHora">Hora de entrega
-                <input type="text" name="pedHora" id="idPedHora">
+                <input type="time" name="pedHoraEnt" id="idPedHora">
             </label>
-            <label for="idPedCliDni">Cliente frecuente DNI
-                <input type="number" name="pedCliDni" id="idPedCliDni">
+            <label for="idPedSubTotal">Sub total
+                <input type="number" name="pedSubTotal" id="idPedSubTotal">
+            </label>
+            <label for="idPedDesc">Descuento
+                <input type="number" name="pedDesc" id="idPedDesc">
+            </label>
+            <label for="idPedCliId">Cliente frecuente ID <!--La idea es luego hacerlo con el dni-->
+                <input type="number" name="pedCliId" id="idPedCliId">
             </label>
             <label for="idPedProd">Producto ID
                 <input type="number" name="pedProd" id="idPedProd">
@@ -57,6 +63,7 @@
             <label for="idPedEmp">Empleado ID
                 <input type="number" name="pedEmp" id="idPedEmp">
             </label>
+            <input type="submit" value="enviar">
             <!-- habria que cambiar la bdd para ingresar tambien el precio unitario, o no se,
             tal vez convenga traer el precio del id de producto, pero es un quilombooooooooooooo -->
         </form>

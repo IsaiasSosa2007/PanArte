@@ -4,27 +4,34 @@ export const pedAlta=(pet, resp)=>{
     resp.render('pedAlta');
 }
 export const pedNuevo=async(pet, resp)=>{
-    let fecha, hora, total, fechaEnt, horaEnt, cantProd, precioUniAct, subTotal, desc, cliId, prodId, empId;
-    fecha=pet.body.pedFecha;
-    hora=pet.body.pedHora;
-    fechaEnt
-    horaEnt
-    estadoPed
-    total=pet.body.pedTotal;
+    let fechaPed, horaPed, total, fechaEnt, horaEnt, cantProd, estadoPed, subTotal, desc, cliId, prodId, empId;
+    let date=new Date();
+    fechaPed=`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+    horaPed=`${date.getHours()}:${date.getMinutes()}:00`
+    fechaEnt=pet.body.pedFechaEnt;
+    horaEnt=pet.body.pedHoraEnt;
+    horaEnt=`${horaEnt}:00`;
+    estadoPed="Pendiente";
     cantProd=pet.body.pedCantProd;
-    precioUniAct=pet.body.pedPrecioUniAct;
-    subTotal
-    desc
-    cliId
-    prodId=pet.body.pedProdId;
-    empId=pet.body.pedEmpId;
+    subTotal=pet.body.pedSubTotal;
+    desc=pet.body.pedDesc;
+    cliId=pet.body.pedCliId;
+    if(cliId==0){
+        cliId=null;
+        desc=0;
+    }
+    total=subTotal-subTotal*(desc/100);
+    prodId=pet.body.pedProd;
+    empId=pet.body.pedEmp;
     try {
-        let altasSQL= "INSERT INTO `pedidos`(`fecha_pedido`,`hora_pedido`,`total`,`cantidad_productos`,`fecha_entrega`,`hora_entrega`,`estado_pedido`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`,`productos_id`)VALUE('"+fecha+"','"+hora+"','"+fechaEnt+"','"+horaEnt+"','"+estadoPed+"','"+total+"','"+cantProd+"','"+precioUniAct+"','"+subTotal+"','"+desc+"','"+cliId+"','"+prodId+"','"+empId+"');";
+        let altasSQL= "INSERT INTO `pedidos`(`fecha_pedido`,`hora_pedido`,`total`,`cantidad_productos`,`fecha_entrega`,`hora_entrega`,`estado_pedido`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`,`productos_id`)VALUE('"+fechaPed+"','"+horaPed+"', '"+total+"', '"+cantProd+"','"+fechaEnt+"','"+horaEnt+"','"+estadoPed+"','"+subTotal+"','"+desc+"','"+cliId+"','"+empId+"','"+prodId+"');";
         const [registro]=await bdd.query(altasSQL);
         resp.render('index');
         console.log(registro);
     } catch (error) {
         console.log(`error al crear la sentencia insert ${error}`);
+        console.log(error);
+        resp.status(500).send("No se pudieron mostrar los datos");
     }
 }
 export const pedMenu=(pet, resp)=>{

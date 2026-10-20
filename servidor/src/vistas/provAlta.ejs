@@ -38,7 +38,7 @@
             <a href="/proveedores/cons"><button>Consultar</button></a>
             <a href="/proveedores/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
-        <form action="/proveedores/provNuevo">
+        <form action="/proveedores/provNuevo" method="post">
             <label for="idProvNom">Nombre de la empresa
                 <input type="text" name="provNom" id="idProvNom">
             </label>
@@ -48,6 +48,7 @@
             <label for="idProvDir">Direccion
                 <input type="text" name="provDir" id="idProvDir">
             </label>
+            <input type="submit" value="enviar">
         </form>
     </div>
 </body>

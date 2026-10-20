@@ -7,10 +7,10 @@ export const provNuevo=async(pet, resp)=>{
     //1: tomar contenido de los name
     //2: colocar esos name en el insert
     //3: ejecutar ese insert
-    let nom, tel, direccion;
-    nom=pet.body.empNom;
-    tel=pet.body.empTel;
-    dir=pet.body.empDir;
+    let nom, tel, dir;
+    nom=pet.body.provNom;
+    tel=pet.body.provTel;
+    dir=pet.body.provDir;
 
     try {
         let altasSQL= "INSERT INTO `proveedores`(`nombre_empresa`,`telefono`,`direccion`)VALUES('"+nom+"','"+tel+"','"+dir+"');";
@@ -40,7 +40,5 @@ export const provMT=async(pet, resp)=>{
         resp.render('provMT', {registros});
     }catch(error){
         console.log('no puede mostrar los datos');
-        console.log(error);
-        resp.status(500).send("No se pudieron mostrar los datos");
     }
 }

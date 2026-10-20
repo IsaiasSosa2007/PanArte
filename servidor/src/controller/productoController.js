@@ -9,7 +9,7 @@ export const prodNuevo=async(pet, resp)=>{
     desc=pet.body.prodDesc;
     prec=pet.body.prodPrec;
     prodStock=pet.body.prodStock;
-    categ=pet.body.prodCateg;
+    categ=pet.body.prodCat;
     try {
         let altasSQL= "INSERT INTO `productos`(`nombre`,`descripcion`,`precio`,`productos_stock`,`categoria`)VALUES('"+nom+"','"+desc+"','"+prec+"','"+prodStock+"','"+categ+"');";
         const [registro]=await bdd.query(altasSQL);
