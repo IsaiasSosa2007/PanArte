@@ -1,5 +1,5 @@
-// import {conectar}from '../database/conexion.js';
-// const bdd=await conectar();
+import {conectar}from '../database/conexion.js';
+const bdd=await conectar();
 export const pedAlta=(pet, resp)=>{
     resp.render('pedAlta');
 }
@@ -39,14 +39,12 @@ export const pedMod=(pet, resp)=>{
 export const pedCons=(pet, resp)=>{
     resp.render('pedCons');
 }
-export const pedMT=/*async*/(pet, resp)=>{
-    resp.render('pedMT');
-    // try{
-    //     let mostrarSQL="SELECT id_cliente,nombre,direccion,telefono,ciudad FROM mydb.cliente Order by id_cliente;";
-    //     const [registros]=await bdd.query(mostrarSQL);
-    //     console.log(registros);
-    //     resp.render('mostrarTodoCliente', {registros});
-    // }catch(error){
-    //     console.log('no puede mostrar los datos');
-    // }
+export const pedMT=async(pet, resp)=>{
+    try{
+        let mostrarSQL="SELECT id_pedido, fecha_pedido, hora_pedido, total, cantidad_productos, fecha_entrega, hora_entrega, estado_pedido, sub_total, descuento, clientes_frecuentes_id, empleados_id, productos_id FROM panartev8.pedidos order by id_pedido;";
+        const [registros]=await bdd.query(mostrarSQL);
+        resp.render('pedMT', {registros});
+    }catch(error){
+        console.log('no puede mostrar los datos');
+    }
 }

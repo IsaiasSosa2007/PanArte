@@ -38,6 +38,35 @@
             <a href="/productos/cons"><button>Consultar</button></a>
             <a href="/productos/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                if(registros.length>0){
+                    registros.forEach(prod => { %>
+                        <tr>
+                            <td><%=prod.id%></td>
+                            <td><%=prod.nombre%></td>
+                            <td><%=prod.descripcion%></td>
+                            <td><%=prod.precio%></td>
+                            <td><%=prod.productos_stock%></td>
+                            <td><%=prod.categoria%></td>
+                        </tr>
+                    <%});
+                }
+                else{%>
+                <p>No hay ingredientes cargados</p><%}%>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

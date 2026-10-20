@@ -38,6 +38,36 @@
             <a href="/empleados/cons"><button>Consultar</button></a>
             <a href="/empleados/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Puesto</th>
+                    <th>Telefono</th>
+                    <th>Fecha Contratacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                if(registros.length>0){
+                    registros.forEach(emp => { 
+                        let fecha=`${emp.fecha_contratacion.getDate()}/${emp.fecha_contratacion.getMonth()+1}/${emp.fecha_contratacion.getFullYear()}`%>
+                        <tr>
+                            <td><%=emp.id%></td>
+                            <td><%=emp.nombre%></td>
+                            <td><%=emp.apellido%></td>
+                            <td><%=emp.puesto%></td>
+                            <td><%=emp.telefono%></td>
+                            <td><%=fecha%></td>
+                        </tr>
+                    <%});
+                }
+                else{%>
+                <p>No hay empleados cargados</p><%}%>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

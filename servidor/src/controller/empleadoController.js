@@ -36,12 +36,10 @@ export const empCons=(pet, resp)=>{
     resp.render('empCons');
 }
 export const empMT=async(pet, resp)=>{
-    // resp.render('mostrarTodoCliente');
     try{
-        let mostrarSQL="SELECT id_cliente,nombre,direccion,telefono,ciudad FROM mydb.cliente Order by id_cliente;";
+        let mostrarSQL="SELECT id, nombre, apellido, puesto, fecha_contratacion, telefono FROM panartev8.empleados order by id;";
         const [registros]=await bdd.query(mostrarSQL);
-        console.log(registros);
-        resp.render('mostrarTodoCliente', {registros});
+        resp.render('empMT', {registros});
     }catch(error){
         console.log('no puede mostrar los datos');
     }

@@ -38,6 +38,31 @@
             <a href="/proveedores/cons"><button>Consultar</button></a>
             <a href="/proveedores/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID/nit</th>
+                    <th>Nombre De Empresa</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                if(registros.length>0){
+                    registros.forEach(prov => { %>
+                        <tr>
+                            <td><%=prov['id/nit']%></td>
+                            <td><%=prov.nombre_empresa%></td>
+                            <td><%=prov.telefono%></td>
+                            <td><%=prov.direccion%></td>
+                        </tr>
+                    <%});
+                }
+                else{%>
+                <p>No hay ingredientes cargados</p><%}%>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

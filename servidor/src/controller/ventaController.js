@@ -63,14 +63,12 @@ export const ventMod=(pet, resp)=>{
 export const ventCons=(pet, resp)=>{
     resp.render('ventCons');
 }
-export const ventMT=/*async*/(pet, resp)=>{
-    resp.render('ventMT');
-    // try{
-    //     let mostrarSQL="SELECT id_cliente,nombre,direccion,telefono,ciudad FROM mydb.cliente Order by id_cliente;";
-    //     const [registros]=await bdd.query(mostrarSQL);
-    //     console.log(registros);
-    //     resp.render('mostrarTodoCliente', {registros});
-    // }catch(error){
-    //     console.log('no puede mostrar los datos');
-    // }
+export const ventMT=async(pet, resp)=>{
+    try{
+        let mostrarSQL="SELECT id_factura, fecha, hora, total, cantidad_productos, precio_unit_actual, sub_total, descuento, clientes_frecuentes_id, productos_id, empleados_id FROM panartev8.ventas order by id_factura;";
+        const [registros]=await bdd.query(mostrarSQL);
+        resp.render('ventMT', {registros});
+    }catch(error){
+        console.log('no puede mostrar los datos');
+    }
 }

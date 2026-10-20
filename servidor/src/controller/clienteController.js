@@ -8,11 +8,9 @@ export const cliNuevo=async(pet, resp)=>{
     dni=pet.body.cliDni;
     nom=pet.body.cliNom;
     ape=pet.body.cliApe
-    nom=nom+" "+ape;
     tel=pet.body.cliTel;
     email=pet.body.cliEmail;
-    desc
-    esFrecuente=1;//1=si 0=no
+    desc=pet.body.cliDesc;
     try {
         let altasSQL= "INSERT INTO `clientes_frecuentes`(`dni`,`nombre`,`apellido`,`telefono`,`email`,`descuento`)VALUES('"+dni+"','"+nom+"','"+ape+"','"+tel+"','"+email+"','"+desc+"');";
         const [registro]=await bdd.query(altasSQL);
@@ -34,6 +32,12 @@ export const cliMod=(pet, resp)=>{
 export const cliCons=(pet, resp)=>{
     resp.render('cliCons');
 }
-export const cliMT=(pet, resp)=>{
-    resp.render('cliMT');
+export const cliMT=async(pet, resp)=>{
+    try{
+        let mostrarSQL="SELECT id, dni, nombre, apellido, telefono, email, descuento FROM panartev8.clientes_frecuentes order by id;";
+        const [registros]=await bdd.query(mostrarSQL);
+        resp.render('cliMT', {registros});
+    }catch(error){
+        console.log('no puede mostrar los datos');
+    }
 }

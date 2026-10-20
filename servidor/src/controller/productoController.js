@@ -1,5 +1,5 @@
-// import {conectar}from '../database/conexion.js';
-// const bdd=await conectar();
+import {conectar}from '../database/conexion.js';
+const bdd=await conectar();
 export const prodAlta=(pet, resp)=>{
     resp.render('prodAlta');
 }
@@ -31,14 +31,12 @@ export const prodMod=(pet, resp)=>{
 export const prodCons=(pet, resp)=>{
     resp.render('prodCons');
 }
-export const prodMT=/*async*/(pet, resp)=>{
-    resp.render('prodMT');
-    // try{
-    //     let mostrarSQL="SELECT id_cliente,nombre,direccion,telefono,ciudad FROM mydb.cliente Order by id_cliente;";
-    //     const [registros]=await bdd.query(mostrarSQL);
-    //     console.log(registros);
-    //     resp.render('mostrarTodoCliente', {registros});
-    // }catch(error){
-    //     console.log('no puede mostrar los datos');
-    // }
+export const prodMT=async(pet, resp)=>{
+    try{
+        let mostrarSQL="SELECT id, nombre, descripcion, precio, productos_stock, categoria FROM panartev8.productos order by id;";
+        const [registros]=await bdd.query(mostrarSQL);
+        resp.render('prodMT', {registros});
+    }catch(error){
+        console.log('no puede mostrar los datos');
+    }
 }
