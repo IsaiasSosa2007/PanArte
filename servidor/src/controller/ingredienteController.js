@@ -27,8 +27,21 @@ export const ingBaja=(pet, resp)=>{
 export const ingMod=(pet, resp)=>{
     resp.render('ingMod');
 }
+export const ingBusq=async(pet, resp)=>{
+    try{
+        let ingId=parseInt(pet.params.ingBusq);
+        const consultaSQL=`SELECT id, nombre, cantidad_stock, unidad_medida, proveedores_id/nit FROM where id=${ingId};`;
+        const [busqueda]=await bdd.query(consultaSQL);
+        console.log(busqueda);
+        resp.render('ingCons', {busqueda});
+    }
+    catch(error){
+        console.log("No se pudo realizar la consulta"+error);
+        resp.render('ingCons', {busqueda: null});
+    }
+}
 export const ingCons=(pet, resp)=>{
-    resp.render('ingCons');
+        resp.render('ingCons', {busqueda: null});
 }
 export const ingMT=async(pet, resp)=>{
     try{

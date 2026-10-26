@@ -91,14 +91,15 @@ table{
 }
 thead, tbody{
     width: 100%;
-    border: solid red 3px;
+    border: solid #F8D7B2 2px;
+    border-radius: 2px;
 }
 tr{
     /* display: flex;
     flex-direction: row;
     justify-content: space-between; */
-    border: solid red 3px;
+    border: solid #F8D7B2 2px;
 }
 td, th{
-    border: solid red 3px;
+    border: solid #F8D7B2 2px;
 }

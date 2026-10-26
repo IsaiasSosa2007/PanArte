@@ -43,8 +43,21 @@ export const pedBaja=(pet, resp)=>{
 export const pedMod=(pet, resp)=>{
     resp.render('pedMod');
 }
+export const pedBusq=async(pet, resp)=>{
+    try{
+        let pedId=parseInt(pet.params.pedBusq);
+        const consultaSQL=`SELECT id_pedido, fecha_pedido, hora_pedido, total, cantidad_productos, fecha_entrega, hora_entrega, estado_pedido, sub_total, descuento, clientes_frecuentes_id, empleados_id, productos_id FROM pedidos where id_pedido=${pedId};`;
+        const [busqueda]=await bdd.query(consultaSQL);
+        console.log(busqueda);
+        resp.render('pedCons', {busqueda});
+    }
+    catch(error){
+        console.log("No se pudo realizar la consulta"+error);
+        resp.render('pedCons', {busqueda: null});
+    }
+}
 export const pedCons=(pet, resp)=>{
-    resp.render('pedCons');
+        resp.render('pedCons', {busqueda: null});
 }
 export const pedMT=async(pet, resp)=>{
     try{

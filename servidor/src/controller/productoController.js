@@ -28,8 +28,21 @@ export const prodBaja=(pet, resp)=>{
 export const prodMod=(pet, resp)=>{
     resp.render('prodMod');
 }
+export const prodBusq=async(pet, resp)=>{
+    try{
+        let prodId=parseInt(pet.params.prodBusq);
+        const consultaSQL=`SELECT id, nombre, descripcion, precio, productos_stock, categoria FROM productos where id=${prodId};`;
+        const [busqueda]=await bdd.query(consultaSQL);
+        console.log(busqueda);
+        resp.render('prodCons', {busqueda});
+    }
+    catch(error){
+        console.log("No se pudo realizar la consulta"+error);
+        resp.render('prodCons', {busqueda: null});
+    }
+}
 export const prodCons=(pet, resp)=>{
-    resp.render('prodCons');
+        resp.render('prodCons', {busqueda: null});
 }
 export const prodMT=async(pet, resp)=>{
     try{

@@ -38,6 +38,49 @@
             <a href="/ingredientes/cons"><button>Consultar</button></a>
             <a href="/ingredientes/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+
+        <form onsubmit="buscar(event)">
+            <label for="idIngIdBusq">Buscar ingrediente por ID:
+                <input type="number" min="1" name="ingBusq" id="idIngIdBusq">
+            </label>
+            <input type="submit" value="Buscar">
+        </form>
+        <%
+        if(busqueda!=null){%>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Stock</th>
+                        <th>Unidad Medida</th>
+                        <th>Proveedores id/nit</th>
+                    </tr>
+                </thead>
+                <!-- id, nombre, cantidad_stock, unidad_medida, proveedores_id/nit -->
+                <tbody>
+            <%busqueda.forEach(busq=>{%>
+                <tr>
+                    <td><%=busq.id%></td>
+                    <td><%=busq.nombre%></td>
+                    <td><%=busq.cantidad_stock%></td>
+                    <td><%=busq.unidad_medida%></td>
+                    <td><%=busq.proveedores_id%></td>
+                </tr>
+
+            <%})%>
+                </tbody>
+            </table>
+       <%}%>
+        
+        <script>
+            function buscar(event) {
+                event.preventDefault();
+                let ingBusq = document.getElementById('idIngIdBusq').value;
+                window.location.href = `/ingredientes/buscar/${ingBusq}`;
+                document.getElementById('idIngIdBusq').value = "";
+            }
+        </script>
     </div>
 </body>
 </html>

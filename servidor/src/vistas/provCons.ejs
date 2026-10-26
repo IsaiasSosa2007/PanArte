@@ -38,6 +38,46 @@
             <a href="/proveedores/cons"><button>Consultar</button></a>
             <a href="/proveedores/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+
+        <form onsubmit="buscar(event)">
+            <label for="idProvIdBusq">Buscar proveedor por ID:
+                <input type="number" min="1" name="provBusq" id="idProvIdBusq">
+            </label>
+            <input type="submit" value="Buscar">
+        </form>
+        <%
+        if(busqueda!=null){%>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Empresa</th>
+                        <th>Telefono</th>
+                        <th>Direccion</th>
+                    </tr>
+                </thead>
+                <tbody>
+            <%busqueda.forEach(busq=>{%>
+                <tr>
+                    <td><%=busq.id%></td>
+                    <td><%=busq.nombre_empresa%></td>
+                    <td><%=busq.telefono%></td>
+                    <td><%=busq.direccion%></td>
+                </tr>
+
+            <%})%>
+                </tbody>
+            </table>
+       <%}%>
+        
+        <script>
+            function buscar(event) {
+                event.preventDefault();
+                let provBusq = document.getElementById('idProvIdBusq').value;
+                window.location.href = `/proveedores/buscar/${provBusq}`;
+                document.getElementById('idProvIdBusq').value = "";
+            }
+        </script>
     </div>
 </body>
 </html>

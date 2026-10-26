@@ -29,9 +29,32 @@ export const cliBaja=(pet, resp)=>{
 export const cliMod=(pet, resp)=>{
     resp.render('cliMod');
 }
-export const cliCons=(pet, resp)=>{
-    resp.render('cliCons');
+export const cliBusq=async(pet, resp)=>{
+    try{
+        let cliId=parseInt(pet.params.cliBusq);
+        const consultaSQL=`SELECT id, dni, nombre, apellido, telefono, email, descuento FROM clientes_frecuentes where id=${cliId};`;
+        const [busqueda]=await bdd.query(consultaSQL);
+        console.log(busqueda);
+        resp.render('cliCons', {busqueda});
+    }
+    catch(error){
+        console.log("No se pudo realizar la consulta"+error);
+        resp.render('cliCons', {busqueda: null});
+    }
 }
+export const cliCons=(pet, resp)=>{
+        resp.render('cliCons', {busqueda: null});
+}
+    /*form action : "/ruta/:(parametro)
+    ruta: /ruta/:parametro--->el parametro se conecta con el "name" asignado al input
+    ruta con dos cosas de consuta
+    /ruta/:parametro1/parametro2
+
+    export const ventCons=(pet, resp)=>{
+        let ventId=pet.params.parametro}
+        const [consultaSQL, format]= `SELECT id, dni, nombre, apellido, telefono, email, descuento FROM clientes_frecuentes where id=${ventId};`
+    
+    */
 export const cliMT=async(pet, resp)=>{
     try{
         let mostrarSQL="SELECT id, dni, nombre, apellido, telefono, email, descuento FROM panartev8.clientes_frecuentes order by id;";

@@ -8,7 +8,7 @@
     <title>Consulta Cliente</title>
 </head>
 <body>
-    <div class="contenedor">
+    <div class="contenedor" id="contenedor">
         <header>
             <div class="divImg">
                 <img src="/LogoPanArte.png" alt="">
@@ -38,6 +38,53 @@
             <a href="/clientes/cons"><button>Consultar</button></a>
             <a href="/clientes/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+
+        <form onsubmit="buscar(event)">
+            <label for="idCliIdBusq">Buscar cliente por ID:
+                <input type="number" min="1" name="cliBusq" id="idCliIdBusq">
+            </label>
+            <input type="submit" value="Buscar">
+        </form>
+        <%
+        if(busqueda!=null){%>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>DNI</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Descuento</th>
+                    </tr>
+                </thead>
+                <tbody>
+            <%busqueda.forEach(busq=>{%>
+                <tr>
+                    <td><%=busq.id%></td>
+                    <td><%=busq.dni%></td>
+                    <td><%=busq.nombre%></td>
+                    <td><%=busq.apellido%></td>
+                    <td><%=busq.email%></td>
+                    <td><%=busq.telefono%></td>
+                    <td><%=busq.descuento%></td>
+                </tr>
+
+            <%})%>
+                </tbody>
+            </table>
+       <%}%>
+        
+        <script>
+            function buscar(event) {
+                event.preventDefault();
+                let cliBusq = document.getElementById('idCliIdBusq').value;
+                window.location.href = `/clientes/buscar/${cliBusq}`;
+                document.getElementById('idCliIdBusq').value = "";
+            }
+        </script>
+
     </div>
 </body>
 </html>

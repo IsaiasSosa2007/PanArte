@@ -40,16 +40,22 @@
         </nav>
         <form action="/ventas/ventNuevo" method="post">
             <label for="idVentCantProd">Cantidad del producto
-                <input type="text" name="ventCantProd" id="idVentCantProd">
+                <input type="number" min="0" name="ventCantProd" id="idVentCantProd">
             </label>
-            <label for="idVentCliDni">Cliente frecuente DNI
-                <input type="text" name="ventCliDni" id="idVentCliDni">
+            <label for="idVentPrecioUniAct">Precio Unitario Actual
+                <input type="number" min="0" name="ventPrecioUniAct" id="idVentPrecioUniAct">
+            </label>
+            <label for="idVentDesc">Descuento
+                <input type="number" min="0" name="ventDesc" id="idVentDesc">
+            </label>
+            <label for="idVentCliId">Cliente frecuente ID
+                <input type="number" min="0" name="ventCliId" id="idVentCliId">
             </label>
             <label for="idVentProdId">Producto id
-                <input type="text" name="ventProdId" id="idVentProdId" list="listProductos">
+                <input type="number" min="0" name="ventProdId" id="idVentProdId" list="listProductos">
             </label>
             <label for="idVentEmpId">Empleado id
-                <input type="text" name="ventEmpId" id="idVentEmpId">
+                <input type="number" min="0" name="ventEmpId" id="idVentEmpId">
             </label>
             <input type="submit" value="enviar">
         </form>

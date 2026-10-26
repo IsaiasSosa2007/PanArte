@@ -29,8 +29,21 @@ export const empBaja=(pet, resp)=>{
 export const empMod=(pet, resp)=>{
     resp.render('empMod');
 }
+export const empBusq=async(pet, resp)=>{
+    try{
+        let empId=parseInt(pet.params.empBusq);
+        const consultaSQL=`SELECT id, nombre, apellido, puesto, fecha_contratacion, telefono FROM empleados where id=${empId};`;
+        const [busqueda]=await bdd.query(consultaSQL);
+        console.log(busqueda);
+        resp.render('empCons', {busqueda});
+    }
+    catch(error){
+        console.log("No se pudo realizar la consulta"+error);
+        resp.render('empCons', {busqueda: null});
+    }
+}
 export const empCons=(pet, resp)=>{
-    resp.render('empCons');
+        resp.render('empCons', {busqueda: null});
 }
 export const empMT=async(pet, resp)=>{
     try{

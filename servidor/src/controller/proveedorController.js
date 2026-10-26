@@ -30,8 +30,21 @@ export const provBaja=(pet, resp)=>{
 export const provMod=(pet, resp)=>{
     resp.render('provMod');
 }
+export const provBusq=async(pet, resp)=>{
+    try{
+        let provId=parseInt(pet.params.provBusq);
+        const consultaSQL=`SELECT id, nombre_empresa, telefono, direccion from proveedores where id=${provId};`;
+        const [busqueda]=await bdd.query(consultaSQL);
+        console.log(busqueda);
+        resp.render('provCons', {busqueda});
+    }
+    catch(error){
+        console.log("No se pudo realizar la consulta"+error);
+        resp.render('provCons', {busqueda: null});
+    }
+}
 export const provCons=(pet, resp)=>{
-    resp.render('provCons');
+        resp.render('provCons', {busqueda: null});
 }
 export const provMT=async(pet, resp)=>{
     try{

@@ -31,19 +31,23 @@ export const ventAlta=(pet, resp)=>{
     // }
 }
 export const ventNuevo=async(pet, resp)=>{
-    let fecha, hora, total, cantProd, precioUniAct, subTotal, desc, cliDni, prodId, empId;
+    let fecha, hora, total, cantProd, precioUniAct, subTotal, desc, cliId, prodId, empId;
     let date=new Date();
+    fecha=`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+    hora=`${date.getHours()}:${date.getMinutes()}:00`;
     cantProd=pet.body.ventCantProd;
+    precioUniAct=pet.body.ventPrecioUniAct;
+    desc=pet.body.ventDesc;
+    subTotal=cantProd*precioUniAct;
+    total=subTotal-subTotal*(desc/100);
+
+
     prodId=pet.body.ventProdId;
     empId=pet.body.ventEmpId;
-    cliDni=pet.body.ventCliDni;
+    cliId=pet.body.ventCliId;
     //precioUniAct=precio que del producto, que lo traemos con su id
-    fecha=`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
-    hora=`${date.getHours()}:${date.getMinutes()}:00`
-    subTotal=precioUniAct*cantProd;
-    total=subTotal-(subTotal*(desc/100));
     try {
-        let altasSQL= "INSERT INTO `ventas`(`fecha`,`hora`,`total`,`cantidad_productos`,`precio_unit_actual`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`,`productos_id`)VALUES('"+fecha+"','"+hora+"','"+total+"','"+subTotal+"','"+cantProd+"','"+precioUniAct+"','"+subTotal+"','"+desc+"','"+cliDni+"','"+prodId+"', '"+empId+"');";
+        let altasSQL= "INSERT INTO `ventas`(`fecha`,`hora`,`total`,`cantidad_productos`,`precio_unit_actual`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`,`productos_id`)VALUES('"+fecha+"','"+hora+"','"+total+"','"+cantProd+"','"+precioUniAct+"','"+subTotal+"','"+desc+"','"+cliId+"','"+prodId+"', '"+empId+"');";
         const [registro]=await bdd.query(altasSQL);
         resp.render('index');
         console.log(registro);
@@ -60,9 +64,31 @@ export const ventBaja=(pet, resp)=>{
 export const ventMod=(pet, resp)=>{
     resp.render('ventMod');
 }
-export const ventCons=(pet, resp)=>{
-    resp.render('ventCons');
+export const ventBusq=async(pet, resp)=>{
+    try{
+        let ventId=parseInt(pet.params.ventBusq);
+        const consultaSQL=`SELECT id_factura, fecha, hora, total, cantidad_productos, precio_unit_actual, sub_total, descuento, clientes_frecuentes_id, productos_id, empleados_id FROM ventas where id_factura=${ventId};`;
+        const [busqueda]=await bdd.query(consultaSQL);
+        console.log(busqueda);
+        resp.render('ventCons', {busqueda});
+    }
+    catch(error){
+        console.log("No se pudo realizar la consulta"+error);
+        resp.render('ventCons', {busqueda: null});
+    }
 }
+export const ventCons=(pet, resp)=>{
+        resp.render('ventCons', {busqueda: null});
+}
+    /*form action : "/ruta/:(parametro)
+    ruta: /ruta/:parametro--->el parametro se conecta con el "name" asignado al input
+    ruta con dos cosas de consuta
+    /ruta/:parametro1/parametro2
+
+    export const ventCons=(pet, resp)=>{
+        let ventId=pet.params.parametro}
+        const [consulta, format]= `SELECT id, dni, nombre, apellido, telefono, email, descuento FROM clientes_frecuentes where id=${ventId};`
+    */
 export const ventMT=async(pet, resp)=>{
     try{
         let mostrarSQL="SELECT id_factura, fecha, hora, total, cantidad_productos, precio_unit_actual, sub_total, descuento, clientes_frecuentes_id, productos_id, empleados_id FROM panartev8.ventas order by id_factura;";
