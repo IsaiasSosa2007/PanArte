@@ -20,6 +20,16 @@ const bdd=await conectar();
 //         return
 //     }
 // }
+export const ventAlta=(pet, resp)=>{
+    // let productos_ID_SQL="select id, nombre, precio from panartev1.productos order by id";
+    // const [productos]=await bdd.query(productos_ID_SQL);
+    // try{
+    // let productos=obtenerProductos();
+    // console.log(productos);
+    resp.render('ventAlta');//, {productos});}
+    // catch(error){console.log(error);
+    // }
+}
 export const ventNuevo=async(pet, resp)=>{
     let fecha, hora, total, subTotal, desc, cliId, empId;
     let date=new Date();

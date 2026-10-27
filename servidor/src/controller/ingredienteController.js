@@ -45,7 +45,7 @@ export const ingCons=(pet, resp)=>{
 }
 export const ingMT=async(pet, resp)=>{
     try{
-        let mostrarSQL="SELECT id, nombre, cantidad_stock, unidad_medida, proveedores_id_nit FROM panartev8.ingredientes order by id;";
+        let mostrarSQL="SELECT id, nombre, cantidad_stock, unidad_medida, proveedores_id_nit FROM ingredientes order by id;";
         const [registros]=await bdd.query(mostrarSQL);
         resp.render('ingMT', {registros});
     }catch(error){

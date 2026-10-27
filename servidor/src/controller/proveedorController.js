@@ -48,7 +48,7 @@ export const provCons=(pet, resp)=>{
 }
 export const provMT=async(pet, resp)=>{
     try{
-        let mostrarSQL="SELECT id_nit, nombre_empresa, telefono, direccion FROM panartev8.proveedores order by id_nit;";
+        let mostrarSQL="SELECT id_nit, nombre_empresa, telefono, direccion FROM proveedores order by id_nit;";
         const [registros]=await bdd.query(mostrarSQL);
         resp.render('provMT', {registros});
     }catch(error){
