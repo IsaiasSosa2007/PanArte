@@ -4,19 +4,22 @@ export const prodAlta=(pet, resp)=>{
     resp.render('prodAlta');
 }
 export const prodNuevo=async(pet, resp)=>{
-    let nom, desc, prec, prodStock, categ
+    let nom, desc, prec, prodStock, categId, recId
     nom=pet.body.prodNom;
     desc=pet.body.prodDesc;
-    prec=pet.body.prodPrec;
-    prodStock=pet.body.prodStock;
-    categ=pet.body.prodCat;
+    prec=Number(pet.body.prodPrec);
+    prodStock=Number(pet.body.prodStock);
+    if(isNaN(prodStock)){ prodStock=0; }
+    categId=parseInt(pet.body.prodCat);
+    recId=parseInt(pet.body.prodRec);
     try {
-        let altasSQL= "INSERT INTO `productos`(`nombre`,`descripcion`,`precio`,`productos_stock`,`categoria`)VALUES('"+nom+"','"+desc+"','"+prec+"','"+prodStock+"','"+categ+"');";
+        let altasSQL= "INSERT INTO `productos`(`nombre`,`descripcion`,`precio`,`productos_stock`,`categorias_id`,`recetas_id`)VALUES("+bdd.escape(nom)+","+bdd.escape(desc)+","+prec+","+prodStock+","+categId+","+recId+");";
         const [registro]=await bdd.query(altasSQL);
-        resp.render('index');
+        resp.redirect('/productos');
         console.log(registro);
     } catch (error) {
         console.log(`error al crear la sentencia insert ${error}`);
+        resp.redirect('/productos/alta');
     }
 }
 export const prodMenu=(pet, resp)=>{
@@ -31,7 +34,7 @@ export const prodMod=(pet, resp)=>{
 export const prodBusq=async(pet, resp)=>{
     try{
         let prodId=parseInt(pet.params.prodBusq);
-        const consultaSQL=`SELECT id, nombre, descripcion, precio, productos_stock, categoria FROM productos where id=${prodId};`;
+        const consultaSQL=`SELECT id, nombre, descripcion, precio, productos_stock, categorias_id, recetas_id FROM productos where id=${prodId};`;
         const [busqueda]=await bdd.query(consultaSQL);
         console.log(busqueda);
         resp.render('prodCons', {busqueda});
@@ -46,10 +49,11 @@ export const prodCons=(pet, resp)=>{
 }
 export const prodMT=async(pet, resp)=>{
     try{
-        let mostrarSQL="SELECT id, nombre, descripcion, precio, productos_stock, categoria FROM panartev8.productos order by id;";
+        let mostrarSQL="SELECT id, nombre, descripcion, precio, productos_stock, categorias_id, recetas_id FROM productos order by id;";
         const [registros]=await bdd.query(mostrarSQL);
         resp.render('prodMT', {registros});
     }catch(error){
         console.log('no puede mostrar los datos');
+        resp.render('prodMT', {registros: []});
     }
 }

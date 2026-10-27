@@ -55,31 +55,23 @@
                         <th>Fecha</th>
                         <th>Hora</th>
                         <th>Total</th>
-                        <th>Cant. Productos</th>
-                        <th>Precio Unit. Actual</th>
                         <th>Subtotal</th>
                         <th>Descuento</th>
                         <th>ID Cliente</th>
-                        <th>ID Producto</th>
                         <th>ID Empleado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- id_factura, fecha, hora, total, cantidad_productos, precio_unit_actual, sub_total, descuento, clientes_frecuentes_id, productos_id, empleados_id -->
             <%busqueda.forEach(busq => { 
                 let fecha=`${busq.fecha.getDate()}/${busq.fecha.getMonth()+1}/${busq.fecha.getFullYear()}`%>
-                %>
                 <tr>
-                    <td><%=busq.id_factura%></td>
+                    <td><%=busq.id%></td>
                     <td><%=fecha%></td>
                     <td><%=busq.hora%></td>
                     <td><%=busq.total%></td>
-                    <td><%=busq.cantidad_productos%></td>
-                    <td><%=busq.precio_unit_actual%></td>
                     <td><%=busq.sub_total%></td>
                     <td><%=busq.descuento%></td>
                     <td><%=busq.clientes_frecuentes_id%></td>
-                    <td><%=busq.productos_id%></td>
                     <td><%=busq.empleados_id%></td>
                 </tr>
             <%})%>

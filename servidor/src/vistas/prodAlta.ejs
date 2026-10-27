@@ -39,21 +39,24 @@
             <a href="/productos/cons"><button>Consultar</button></a>
             <a href="/productos/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
-        <form action="/productos/prodNuevo" method="post">
+                <form action="/productos/prodNuevo" method="post">
             <label for="idProdNom">Nombre
-                <input type="text" name="prodNom" id="idProdNom">
+                <input type="text" name="prodNom" id="idProdNom" required>
             </label>
             <label for="idProdDesc">Descripcion
                 <input type="text" name="prodDesc" id="idProdDesc">
             </label>
             <label for="idProdPrec">Precio
-                <input type="number" name="prodPrec" id="idProdPrec">
+                <input type="number" min="0" step="0.01" name="prodPrec" id="idProdPrec" required>
             </label>
             <label for="idProdStock">Productos en stock
-                <input type="number" name="prodStock" id="idProdStock">
+                <input type="number" min="0" step="0.01" name="prodStock" id="idProdStock">
             </label>
-            <label for="idProdCat">Categoria
-                <input type="text" name="prodCat" id="idProdCat">
+            <label for="idProdCat">Categoria ID
+                <input type="number" min="1" name="prodCat" id="idProdCat" required>
+            </label>
+            <label for="idProdRec">Receta ID
+                <input type="number" min="1" name="prodRec" id="idProdRec" required>
             </label>
             <input type="submit" value="enviar">
         </form>

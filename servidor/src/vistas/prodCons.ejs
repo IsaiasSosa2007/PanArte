@@ -50,14 +50,14 @@
         if(busqueda!=null){%>
             <table>
                 <thead>
-                    <!-- id, nombre, descripcion, precio, productos_stock, categoria -->
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
                         <th>Precio</th>
                         <th>Stock</th>
-                        <th>Categoria</th>
+                        <th>Categoria ID</th>
+                        <th>Receta ID</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,9 +68,9 @@
                     <td><%=busq.descripcion%></td>
                     <td><%=busq.precio%></td>
                     <td><%=busq.productos_stock%></td>
-                    <td><%=busq.categoria%></td>
+                    <td><%=busq.categorias_id%></td>
+                    <td><%=busq.recetas_id%></td>
                 </tr>
-
             <%})%>
                 </tbody>
             </table>

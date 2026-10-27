@@ -46,13 +46,10 @@
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Total</th>
-                    <th>Cantidad</th>
-                    <th>Precio Uni Act</th>
                     <th>Sub Total</th>
                     <th>Descuento</th>
                     <th>Cliente ID</th>
                     <th>Empleado ID</th>
-                    <th>Producto ID</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,22 +58,19 @@
                     registros.forEach(vent => { 
                         let fecha=`${vent.fecha.getDate()}/${vent.fecha.getMonth()+1}/${vent.fecha.getFullYear()}`%>
                         <tr>
-                            <td><%=vent.id_factura%></td>
+                            <td><%=vent.id%></td>
                             <td><%=fecha%></td>
                             <td><%=vent.hora%></td>
                             <td><%=vent.total%></td>
-                            <td><%=vent.cantidad_productos%></td>
-                            <td><%=vent.precio_unit_actual%></td>
                             <td><%=vent.sub_total%></td>
                             <td><%=vent.descuento%></td>
                             <td><%=vent.clientes_frecuentes_id%></td>
                             <td><%=vent.empleados_id%></td>
-                            <td><%=vent.productos_id%></td>
                         </tr>
                     <%});
                 }
                 else{%>
-                <p>No hay ingredientes cargados</p><%}%>
+                <tr><td colspan="8">No hay ventas cargadas</td></tr><%}%>
             </tbody>
         </table>
     </div>

@@ -20,39 +20,26 @@ const bdd=await conectar();
 //         return
 //     }
 // }
-export const ventAlta=(pet, resp)=>{
-    // let productos_ID_SQL="select id, nombre, precio from panartev1.productos order by id";
-    // const [productos]=await bdd.query(productos_ID_SQL);
-    // try{
-    // let productos=obtenerProductos();
-    // console.log(productos);
-    resp.render('ventAlta');//, {productos});}
-    // catch(error){console.log(error);
-    // }
-}
 export const ventNuevo=async(pet, resp)=>{
-    let fecha, hora, total, cantProd, precioUniAct, subTotal, desc, cliId, prodId, empId;
+    let fecha, hora, total, subTotal, desc, cliId, empId;
     let date=new Date();
     fecha=`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
     hora=`${date.getHours()}:${date.getMinutes()}:00`;
-    cantProd=pet.body.ventCantProd;
-    precioUniAct=pet.body.ventPrecioUniAct;
-    desc=pet.body.ventDesc;
-    subTotal=cantProd*precioUniAct;
+    subTotal=Number(pet.body.ventSubTotal);
+    desc=Number(pet.body.ventDesc);
+    if(isNaN(desc)){ desc=0; }
     total=subTotal-subTotal*(desc/100);
-
-
-    prodId=pet.body.ventProdId;
-    empId=pet.body.ventEmpId;
-    cliId=pet.body.ventCliId;
-    //precioUniAct=precio que del producto, que lo traemos con su id
+    empId=parseInt(pet.body.ventEmpId);
+    cliId=parseInt(pet.body.ventCliId);
+    if(isNaN(cliId) || cliId===0){ cliId="NULL"; }
     try {
-        let altasSQL= "INSERT INTO `ventas`(`fecha`,`hora`,`total`,`cantidad_productos`,`precio_unit_actual`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`,`productos_id`)VALUES('"+fecha+"','"+hora+"','"+total+"','"+cantProd+"','"+precioUniAct+"','"+subTotal+"','"+desc+"','"+cliId+"','"+prodId+"', '"+empId+"');";
+        let altasSQL="INSERT INTO `ventas`(`fecha`,`hora`,`total`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`)VALUES('"+fecha+"','"+hora+"',"+total+","+subTotal+","+desc+","+cliId+","+empId+");";
         const [registro]=await bdd.query(altasSQL);
-        resp.render('index');
+        resp.redirect('/ventas');
         console.log(registro);
     } catch (error) {
         console.log(`error al crear la sentencia insert ${error}`);
+        resp.redirect('/ventas/alta');
     }
 }
 export const ventMenu=(pet, resp)=>{
@@ -67,7 +54,7 @@ export const ventMod=(pet, resp)=>{
 export const ventBusq=async(pet, resp)=>{
     try{
         let ventId=parseInt(pet.params.ventBusq);
-        const consultaSQL=`SELECT id_factura, fecha, hora, total, cantidad_productos, precio_unit_actual, sub_total, descuento, clientes_frecuentes_id, productos_id, empleados_id FROM ventas where id_factura=${ventId};`;
+        const consultaSQL=`SELECT id, fecha, hora, total, sub_total, descuento, empleados_id, clientes_frecuentes_id FROM ventas where id=${ventId};`;
         const [busqueda]=await bdd.query(consultaSQL);
         console.log(busqueda);
         resp.render('ventCons', {busqueda});
@@ -91,7 +78,7 @@ export const ventCons=(pet, resp)=>{
     */
 export const ventMT=async(pet, resp)=>{
     try{
-        let mostrarSQL="SELECT id_factura, fecha, hora, total, cantidad_productos, precio_unit_actual, sub_total, descuento, clientes_frecuentes_id, productos_id, empleados_id FROM panartev8.ventas order by id_factura;";
+        let mostrarSQL="SELECT id, fecha, hora, total, sub_total, descuento, empleados_id, clientes_frecuentes_id FROM ventas order by id;";
         const [registros]=await bdd.query(mostrarSQL);
         resp.render('ventMT', {registros});
     }catch(error){

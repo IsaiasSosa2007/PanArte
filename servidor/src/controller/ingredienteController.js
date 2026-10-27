@@ -10,7 +10,7 @@ export const ingNuevo=async(pet, resp)=>{
     unidadMedida=pet.body.ingUniMed;
     idProv=pet.body.ingProv;
     try {
-        let altasSQL= "INSERT INTO `ingredientes`(`nombre`,`cantidad_stock`,`unidad_medida`,`proveedores_id/nit`)VALUES('"+nom+"','"+cantStock+"','"+unidadMedida+"','"+idProv+"');";
+        let altasSQL= "INSERT INTO `ingredientes`(`nombre`,`cantidad_stock`,`unidad_medida`,`proveedores_id_nit`)VALUES('"+nom+"','"+cantStock+"','"+unidadMedida+"','"+idProv+"');";
         const [registro]=await bdd.query(altasSQL);
         resp.render('index');
         console.log(registro);
@@ -30,7 +30,7 @@ export const ingMod=(pet, resp)=>{
 export const ingBusq=async(pet, resp)=>{
     try{
         let ingId=parseInt(pet.params.ingBusq);
-        const consultaSQL=`SELECT id, nombre, cantidad_stock, unidad_medida, proveedores_id/nit FROM where id=${ingId};`;
+        const consultaSQL=`SELECT id, nombre, cantidad_stock, unidad_medida, proveedores_id_nit FROM where id=${ingId};`;
         const [busqueda]=await bdd.query(consultaSQL);
         console.log(busqueda);
         resp.render('ingCons', {busqueda});
@@ -45,7 +45,7 @@ export const ingCons=(pet, resp)=>{
 }
 export const ingMT=async(pet, resp)=>{
     try{
-        let mostrarSQL="SELECT id, nombre, cantidad_stock, unidad_medida, `proveedores_id/nit` FROM panartev8.ingredientes order by id;";
+        let mostrarSQL="SELECT id, nombre, cantidad_stock, unidad_medida, proveedores_id_nit FROM panartev8.ingredientes order by id;";
         const [registros]=await bdd.query(mostrarSQL);
         resp.render('ingMT', {registros});
     }catch(error){

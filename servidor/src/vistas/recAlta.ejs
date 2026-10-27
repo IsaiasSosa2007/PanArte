@@ -39,6 +39,13 @@
             <a href="/recetas/cons"><button>Consultar</button></a>
             <a href="/recetas/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+
+        <form action="/recetas/recNuevo" method="post">
+            <label for="idRecNom">Nombre de la receta
+                <input type="text" name="recNom" id="idRecNom" required>
+            </label>
+            <input type="submit" value="enviar">
+        </form>
     </div>
 </body>
 </html>

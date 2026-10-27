@@ -39,14 +39,14 @@
             <a href="/pedidos/cons"><button>Consultar</button></a>
             <a href="/pedidos/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
-        <table>
+        <!-- mostrar todo pedidos -->
+                <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Fecha orig</th>
                     <th>Hora orig</th>
                     <th>Total</th>
-                    <th>Cantidad</th>
                     <th>Fecha Entrega</th>
                     <th>Hora Entrega</th>
                     <th>Estado</th>
@@ -54,7 +54,6 @@
                     <th>Descuento</th>
                     <th>Cliente ID</th>
                     <th>Empleado ID</th>
-                    <th>Producto ID</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,11 +63,10 @@
                         let fechaPedido=`${ped.fecha_pedido.getDate()}/${ped.fecha_pedido.getMonth()+1}/${ped.fecha_pedido.getFullYear()}`
                         let fechaEntrega=`${ped.fecha_entrega.getDate()}/${ped.fecha_entrega.getMonth()+1}/${ped.fecha_entrega.getFullYear()}`%>
                         <tr>
-                            <td><%=ped.id_pedido%></td>
+                            <td><%=ped.id%></td>
                             <td><%=fechaPedido%></td>
                             <td><%=ped.hora_pedido%></td>
                             <td><%=ped.total%></td>
-                            <td><%=ped.cantidad_productos%></td>
                             <td><%=fechaEntrega%></td>
                             <td><%=ped.hora_entrega%></td>
                             <td><%=ped.estado_pedido%></td>
@@ -76,12 +74,11 @@
                             <td><%=ped.descuento%></td>
                             <td><%=ped.clientes_frecuentes_id%></td>
                             <td><%=ped.empleados_id%></td>
-                            <td><%=ped.productos_id%></td>
                         </tr>
                     <%});
                 }
                 else{%>
-                <p>No hay ingredientes cargados</p><%}%>
+                <tr><td colspan="11">No hay pedidos cargados</td></tr><%}%>
             </tbody>
         </table>
     </div>

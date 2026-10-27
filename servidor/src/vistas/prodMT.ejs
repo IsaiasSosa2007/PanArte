@@ -47,7 +47,8 @@
                     <th>Descripcion</th>
                     <th>Precio</th>
                     <th>Stock</th>
-                    <th>Categoria</th>
+                    <th>Categoria ID</th>
+                    <th>Receta ID</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,12 +61,13 @@
                             <td><%=prod.descripcion%></td>
                             <td><%=prod.precio%></td>
                             <td><%=prod.productos_stock%></td>
-                            <td><%=prod.categoria%></td>
+                            <td><%=prod.categorias_id%></td>
+                            <td><%=prod.recetas_id%></td>
                         </tr>
                     <%});
                 }
                 else{%>
-                <p>No hay ingredientes cargados</p><%}%>
+                <tr><td colspan="7">No hay productos cargados</td></tr><%}%>
             </tbody>
         </table>
     </div>

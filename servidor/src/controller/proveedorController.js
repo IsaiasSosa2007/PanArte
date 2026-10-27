@@ -33,7 +33,7 @@ export const provMod=(pet, resp)=>{
 export const provBusq=async(pet, resp)=>{
     try{
         let provId=parseInt(pet.params.provBusq);
-        const consultaSQL=`SELECT id, nombre_empresa, telefono, direccion from proveedores where id=${provId};`;
+        const consultaSQL=`SELECT id_nit, nombre_empresa, telefono, direccion from proveedores where id_nit=${provId};`;
         const [busqueda]=await bdd.query(consultaSQL);
         console.log(busqueda);
         resp.render('provCons', {busqueda});
@@ -48,7 +48,7 @@ export const provCons=(pet, resp)=>{
 }
 export const provMT=async(pet, resp)=>{
     try{
-        let mostrarSQL="SELECT `id/nit`, nombre_empresa, telefono, direccion FROM panartev8.proveedores order by `id/nit`;";
+        let mostrarSQL="SELECT id_nit, nombre_empresa, telefono, direccion FROM panartev8.proveedores order by id_nit;";
         const [registros]=await bdd.query(mostrarSQL);
         resp.render('provMT', {registros});
     }catch(error){

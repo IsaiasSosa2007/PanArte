@@ -4,7 +4,7 @@ export const pedAlta=(pet, resp)=>{
     resp.render('pedAlta');
 }
 export const pedNuevo=async(pet, resp)=>{
-    let fechaPed, horaPed, total, fechaEnt, horaEnt, cantProd, estadoPed, subTotal, desc, cliId, prodId, empId;
+    let fechaPed, horaPed, total, fechaEnt, horaEnt, estadoPed, subTotal, desc, cliId, empId;
     let date=new Date();
     fechaPed=`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
     horaPed=`${date.getHours()}:${date.getMinutes()}:00`
@@ -12,26 +12,25 @@ export const pedNuevo=async(pet, resp)=>{
     horaEnt=pet.body.pedHoraEnt;
     horaEnt=`${horaEnt}:00`;
     estadoPed="Pendiente";
-    cantProd=pet.body.pedCantProd;
-    subTotal=pet.body.pedSubTotal;
-    desc=pet.body.pedDesc;
-    cliId=pet.body.pedCliId;
-    if(cliId==0){
-        cliId=null;
+    subTotal=Number(pet.body.pedSubTotal);
+    desc=Number(pet.body.pedDesc);
+    if(isNaN(desc)){ desc=0; }
+    cliId=parseInt(pet.body.pedCliId);
+    if(isNaN(cliId) || cliId===0){
+        cliId="NULL";
         desc=0;
     }
     total=subTotal-subTotal*(desc/100);
-    prodId=pet.body.pedProd;
-    empId=pet.body.pedEmp;
+    empId=parseInt(pet.body.pedEmp);
     try {
-        let altasSQL= "INSERT INTO `pedidos`(`fecha_pedido`,`hora_pedido`,`total`,`cantidad_productos`,`fecha_entrega`,`hora_entrega`,`estado_pedido`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`,`productos_id`)VALUE('"+fechaPed+"','"+horaPed+"', '"+total+"', '"+cantProd+"','"+fechaEnt+"','"+horaEnt+"','"+estadoPed+"','"+subTotal+"','"+desc+"','"+cliId+"','"+empId+"','"+prodId+"');";
+        let altasSQL= "INSERT INTO `pedidos`(`fecha_pedido`,`hora_pedido`,`total`,`fecha_entrega`,`hora_entrega`,`estado_pedido`,`sub_total`,`descuento`,`clientes_frecuentes_id`,`empleados_id`)VALUES('"+fechaPed+"','"+horaPed+"',"+total+",'"+fechaEnt+"','"+horaEnt+"','"+estadoPed+"',"+subTotal+","+desc+","+cliId+","+empId+");";
         const [registro]=await bdd.query(altasSQL);
-        resp.render('index');
+        resp.redirect('/pedidos');
         console.log(registro);
     } catch (error) {
         console.log(`error al crear la sentencia insert ${error}`);
         console.log(error);
-        resp.status(500).send("No se pudieron mostrar los datos");
+        resp.status(500).send("No se pudo guardar el pedido");
     }
 }
 export const pedMenu=(pet, resp)=>{
@@ -46,7 +45,7 @@ export const pedMod=(pet, resp)=>{
 export const pedBusq=async(pet, resp)=>{
     try{
         let pedId=parseInt(pet.params.pedBusq);
-        const consultaSQL=`SELECT id_pedido, fecha_pedido, hora_pedido, total, cantidad_productos, fecha_entrega, hora_entrega, estado_pedido, sub_total, descuento, clientes_frecuentes_id, empleados_id, productos_id FROM pedidos where id_pedido=${pedId};`;
+        const consultaSQL=`SELECT id, fecha_pedido, hora_pedido, total, fecha_entrega, hora_entrega, estado_pedido, sub_total, descuento, empleados_id, clientes_frecuentes_id FROM pedidos where id=${pedId};`;
         const [busqueda]=await bdd.query(consultaSQL);
         console.log(busqueda);
         resp.render('pedCons', {busqueda});
@@ -61,10 +60,11 @@ export const pedCons=(pet, resp)=>{
 }
 export const pedMT=async(pet, resp)=>{
     try{
-        let mostrarSQL="SELECT id_pedido, fecha_pedido, hora_pedido, total, cantidad_productos, fecha_entrega, hora_entrega, estado_pedido, sub_total, descuento, clientes_frecuentes_id, empleados_id, productos_id FROM panartev8.pedidos order by id_pedido;";
+        let mostrarSQL="SELECT id, fecha_pedido, hora_pedido, total, fecha_entrega, hora_entrega, estado_pedido, sub_total, descuento, empleados_id, clientes_frecuentes_id FROM pedidos order by id;";
         const [registros]=await bdd.query(mostrarSQL);
         resp.render('pedMT', {registros});
     }catch(error){
         console.log('no puede mostrar los datos');
+        resp.render('pedMT', {registros: []});
     }
 }

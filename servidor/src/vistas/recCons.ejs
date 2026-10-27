@@ -39,6 +39,40 @@
             <a href="/recetas/cons"><button>Consultar</button></a>
             <a href="/recetas/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
+
+         <form onsubmit="buscar(event)">
+            <label for="idRecIdBusq">Buscar receta por ID:
+                <input type="number" min="1" name="recBusq" id="idRecIdBusq" required>
+            </label>
+            <input type="submit" value="Buscar">
+        </form>
+
+        <% if (busqueda) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% busqueda.forEach(busq => { %>
+                <tr>
+                    <td><%= busq.id %></td>
+                    <td><%= busq.nombre %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <% } %>
+        <script>
+            function buscar(event) {
+                event.preventDefault();
+                const id = document.getElementById('idRecIdBusq').value;
+                window.location.href = `/recetas/buscar/${id}`;
+                document.getElementById('idVentIdBusq').value = "";
+            }
+        </script>
     </div>
 </body>
 </html>
