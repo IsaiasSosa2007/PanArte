@@ -39,52 +39,6 @@
             <a href="/clientes/cons"><button>Consultar</button></a>
             <a href="/clientes/mostrarTodo"><button>Mostrar Todo</button></a>
         </nav>
-
-        <form onsubmit="buscar(event)">
-            <label for="idCliIdBusq">ID del cliente a modificar:
-                <input type="number" min="1" name="cliBusq" id="idCliIdBusq">
-            </label>
-            <input type="submit" value="Buscar">
-        </form>
-
-        <%if(mensaje!=""){%>
-            <p><%=mensaje%></p>
-        <%}%>
-
-        <%if(cliente!=null){%>
-            <!-- mismo formulario que el alta, pero con los datos ya cargados en value -->
-            <form action="/clientes/mod/guardar" method="post">
-                <p>ID: <%=cliente.id%></p>
-                <input type="hidden" name="cliId" value="<%=cliente.id%>">
-                <label for="idCliDni"> DNI
-                    <input type="text" name="cliDni" id="idCliDni" value="<%=cliente.dni%>">
-                </label>
-                <label for="idCliNom">Nombre
-                    <input type="text" name="cliNom" id="idCliNom" value="<%=cliente.nombre%>">
-                </label>
-                <label for="idCliApe">apellido
-                    <input type="text" name="cliApe" id="idCliApe" value="<%=cliente.apellido%>">
-                </label>
-                <label for="idCliTel">Telefono
-                    <input type="text" name="cliTel" id="idCliTel" value="<%=cliente.telefono%>">
-                </label>
-                <label for="idCliEmail">Email
-                    <input type="text" name="cliEmail" id="idCliEmail" value="<%=cliente.email%>">
-                </label>
-                <label for="idCliDesc">Descuento
-                    %<input type="number" name="cliDesc" id="idCliDesc" value="<%=cliente.descuento%>">
-                </label>
-                <input type="submit" value="Guardar cambios">
-            </form>
-        <%}%>
-
-        <script>
-            function buscar(event) {
-                event.preventDefault();
-                let cliBusq = document.getElementById('idCliIdBusq').value;
-                window.location.href = `/clientes/mod/buscar/${cliBusq}`;
-            }
-        </script>
     </div>
 </body>
 </html>

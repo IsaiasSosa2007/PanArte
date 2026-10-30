@@ -41,17 +41,13 @@
         </nav>
 
         <form onsubmit="buscar(event)">
-            <label for="idCliIdBusq">ID del cliente a eliminar:
-                <input type="number" min="1" name="cliBusq" id="idCliIdBusq">
+            <label for="idCliIdBusqBaja">Buscar cliente por ID para eliminar:
+                <input type="number" min="1" name="cliBusqBaja" id="idCliIdBusqBaja">
             </label>
             <input type="submit" value="Buscar">
         </form>
-
-        <%if(mensaje!=""){%>
-            <p><%=mensaje%></p>
-        <%}%>
-
-        <%if(cliente!=null){%>
+        <%
+        if(busqueda!=null){%>
             <table>
                 <thead>
                     <tr>
@@ -59,37 +55,56 @@
                         <th>DNI</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Telefono</th>
                         <th>Email</th>
+                        <th>Telefono</th>
                         <th>Descuento</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><%=cliente.id%></td>
-                        <td><%=cliente.dni%></td>
-                        <td><%=cliente.nombre%></td>
-                        <td><%=cliente.apellido%></td>
-                        <td><%=cliente.telefono%></td>
-                        <td><%=cliente.email%></td>
-                        <td><%=cliente.descuento%></td>
-                    </tr>
+            <%busqueda.forEach(busq=>{%>
+                <tr>
+                    <td><%=busq.id%></td>
+                    <td><%=busq.dni%></td>
+                    <td><%=busq.nombre%></td>
+                    <td><%=busq.apellido%></td>
+                    <td><%=busq.email%></td>
+                    <td><%=busq.telefono%></td>
+                    <td><%=busq.descuento%></td>
+                </tr>
+
+            <%})%>
                 </tbody>
             </table>
-            <!-- confirm() muestra el cartel de "Aceptar / Cancelar" del navegador -->
-            <form action="/clientes/baja/eliminar" method="post" onsubmit="return confirm('¿Seguro que querés eliminar este cliente?')">
-                <input type="hidden" name="cliId" value="<%=cliente.id%>">
-                <input type="submit" value="Eliminar">
-            </form>
-        <%}%>
+       <%}%>
+        
+       <%
+        if(baja!=null){
+            alert(`cliente con id ${cliId} eliminado`);
+            console.log(`cliente con id ${cliId} eliminado`);
+        %>
+            <button id="btnBorrar">Borrar</button>
+        <%}
+        %>
 
         <script>
             function buscar(event) {
                 event.preventDefault();
-                let cliBusq = document.getElementById('idCliIdBusq').value;
-                window.location.href = `/clientes/baja/buscar/${cliBusq}`;
+                let cliBusqBaja = document.getElementById('idCliIdBusqBaja').value;
+                window.location.href = `/clientes/bajaDelete/${cliBusqBaja}`;
+                document.getElementById('idCliIdBusqBaja').value = "";
             }
         </script>
+        <%
+        if(baja!=null){
+            <script>
+                let btnBorrar=document.getElementById('btnBorrar');
+                btnBorrar.addEventListener('click', ()=>{
+                    let cliBusqBaja=document.getElementById('idCliIdBusqBaja').value;
+                    window.location.href=`/clientes/baja/${}`;
+                })
+            </script>
+        }%>
+
     </div>
 </body>
 </html>

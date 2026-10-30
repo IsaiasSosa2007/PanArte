@@ -30,7 +30,7 @@ export const ingMod=(pet, resp)=>{
 export const ingBusq=async(pet, resp)=>{
     try{
         let ingId=parseInt(pet.params.ingBusq);
-        const consultaSQL=`SELECT id, nombre, cantidad_stock, unidad_medida, proveedores_id_nit FROM where id=${ingId};`;
+        const consultaSQL=`SELECT id, nombre, cantidad_stock, unidad_medida, proveedores_id_nit FROM ingredientes where id=${ingId};`;
         const [busqueda]=await bdd.query(consultaSQL);
         console.log(busqueda);
         resp.render('ingCons', {busqueda});

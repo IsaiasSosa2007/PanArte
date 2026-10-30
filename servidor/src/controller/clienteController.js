@@ -23,118 +23,25 @@ export const cliNuevo=async(pet, resp)=>{
 export const cliMenu=(pet, resp)=>{
     resp.render('clientes');
 }
+export const cliBajaDelete=async(pet,resp)=>{
+    try{
+    let cliId=parseInt(pet.params.cliBusqBaja);
+    const deleteSQL=`DELETE FROM clientes_frecuentes WHERE id=${cliId};`
+    const [baja]=await bdd.query(deleteSQL);
+    console.log(baja);
+    //hay que hacer que se envie el query unicamente luego de presionar el boton de borrar
+    resp.render('cliBaja', {busqueda, baja});
+    }
+    catch(error){
+        resp.render('cliBaja', {busqueda: null, baja: null});
+    }
+}
 export const cliBaja=(pet, resp)=>{
-    resp.render('cliBaja', {cliente: null, mensaje: ""});
+    resp.render('cliBaja', {busqueda: null, baja: null});
 }
-//busca el cliente por id y lo muestra para confirmar la baja
-export const cliBajaBusq=async(pet, resp)=>{
-    try{
-        let cliId=parseInt(pet.params.cliBusq);
-        const consultaSQL=`SELECT id, dni, nombre, apellido, telefono, email, descuento FROM clientes_frecuentes WHERE id=${cliId};`;
-        const [busqueda]=await bdd.query(consultaSQL);
-        if(busqueda.length>0){
-            resp.render('cliBaja', {cliente: busqueda[0], mensaje: ""});
-        }
-        else{
-            resp.render('cliBaja', {cliente: null, mensaje: "No existe un cliente con ese ID"});
-        }
-    }
-    catch(error){
-        console.log("No se pudo realizar la consulta "+error);
-        resp.render('cliBaja', {cliente: null, mensaje: "Error al buscar el cliente"});
-    }
-}
-//elimina el cliente (el id llega desde un input oculto del formulario)
-export const cliEliminar=async(pet, resp)=>{
-    let cliId=parseInt(pet.body.cliId);
-    try{
-        const bajaSQL=`DELETE FROM clientes_frecuentes WHERE id=${cliId};`;
-        const [resultado]=await bdd.query(bajaSQL);
-        console.log(resultado);
-        resp.render('cliBaja', {cliente: null, mensaje: "Cliente eliminado correctamente"});
-    }
-    catch(error){
-        console.log("No se pudo eliminar el cliente "+error);
-        //1451: el cliente tiene ventas o pedidos que lo usan (FK con RESTRICT)
-        if(error.errno==1451){
-            resp.render('cliBaja', {cliente: null, mensaje: "No se puede eliminar: el cliente tiene ventas o pedidos registrados"});
-        }
-        else{
-            resp.render('cliBaja', {cliente: null, mensaje: "Error al eliminar el cliente"});
-        }
-    }
-}
-
-//----------------------------------------------------------
-// MODIFICACION
-//----------------------------------------------------------
-//muestra la pantalla de modificacion vacia, solo con el buscador
 export const cliMod=(pet, resp)=>{
-    resp.render('cliMod', {cliente: null, mensaje: ""});
+    resp.render('cliMod');
 }
-//busca el cliente por id y carga sus datos en el formulario
-export const cliModBusq=async(pet, resp)=>{
-    try{
-        let cliId=parseInt(pet.params.cliBusq);
-        const consultaSQL=`SELECT id, dni, nombre, apellido, telefono, email, descuento FROM clientes_frecuentes WHERE id=${cliId};`;
-        const [busqueda]=await bdd.query(consultaSQL);
-        if(busqueda.length>0){
-            resp.render('cliMod', {cliente: busqueda[0], mensaje: ""});
-        }
-        else{
-            resp.render('cliMod', {cliente: null, mensaje: "No existe un cliente con ese ID"});
-        }
-    }
-    catch(error){
-        console.log("No se pudo realizar la consulta "+error);
-        resp.render('cliMod', {cliente: null, mensaje: "Error al buscar el cliente"});
-    }
-}
-//guarda los cambios del formulario
-export const cliGuardar=async(pet, resp)=>{
-    let id, dni, nom, ape, tel, email, desc;
-    id=parseInt(pet.body.cliId);
-    dni=pet.body.cliDni;
-    nom=pet.body.cliNom;
-    ape=pet.body.cliApe;
-    tel=pet.body.cliTel;
-    email=pet.body.cliEmail;
-    desc=pet.body.cliDesc;
-    //si el dni o el email vienen vacios se guardan como NULL (sin comillas)
-    let dniSQL, emailSQL;
-    if(dni==""){
-        dniSQL="NULL";
-    }
-    else{
-        dniSQL="'"+dni+"'";
-    }
-    if(email==""){
-        emailSQL="NULL";
-    }
-    else{
-        emailSQL="'"+email+"'";
-    }
-    if(desc==""){
-        desc=0;
-    }
-    try{
-        const modSQL=`UPDATE clientes_frecuentes SET dni=${dniSQL}, nombre='${nom}', apellido='${ape}', telefono='${tel}', email=${emailSQL}, descuento=${desc} WHERE id=${id};`;
-        const [resultado]=await bdd.query(modSQL);
-        console.log(resultado);
-        resp.render('cliMod', {cliente: null, mensaje: "Cliente modificado correctamente"});
-    }
-    catch(error){
-        console.log("No se pudo modificar el cliente "+error);
-        //1062: dato repetido en una columna UNIQUE (el dni)
-        if(error.errno==1062){
-            resp.render('cliMod', {cliente: null, mensaje: "Ya existe otro cliente con ese DNI"});
-        }
-        else{
-            resp.render('cliMod', {cliente: null, mensaje: "Error al modificar el cliente"});
-        }
-    }
-}
-
 export const cliBusq=async(pet, resp)=>{
     try{
         let cliId=parseInt(pet.params.cliBusq);
@@ -148,6 +55,13 @@ export const cliBusq=async(pet, resp)=>{
         resp.render('cliCons', {busqueda: null});
     }
 }
+/*
+Flujo de datos:
+se carga la pantalla cliCons con el formulario para introducir el id a buscar
+el formulario llama a la funcion buscar al darle al boton submit
+funcion buscar obtiene le valor del id del formulario
+manda a la ruta clientes/busacr/id con el id siendo el dato del formulario
+*/
 export const cliCons=(pet, resp)=>{
         resp.render('cliCons', {busqueda: null});
 }
